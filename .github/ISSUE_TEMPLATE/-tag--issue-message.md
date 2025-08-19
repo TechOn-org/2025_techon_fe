@@ -1,7 +1,7 @@
 ---
 name: "[Tag] Issue Message"
 about: 해당 이슈 템플릿을 사용하여 이슈를 생성해주세요
-title: ''
+title: "[Tag] Issue Message"
 labels: ''
 assignees: dusskdus
 
