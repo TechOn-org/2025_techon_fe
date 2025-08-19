@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-/** Design tokens (모바일 기본 360~390px 폭을 가정) */
+/** Design tokens */
 const color = {
   bg: "#F5F7FB",
   card: "#FFFFFF",
@@ -17,57 +17,100 @@ export const Wrap = styled.div`
   background: ${color.bg};
 `;
 
+/* ===== Header ===== */
 export const Header = styled.header`
   position: sticky;
   top: 0;
   z-index: 10;
   background: ${color.bg};
-  padding: 14px 16px 10px;
-  border-bottom: 1px solid ${color.line};
+  padding: 14px 16px 8px;
 `;
 
-export const RowBetween = styled.div`
+export const HeaderTop = styled.div`
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+`;
+
+export const TogglePill = styled.div`
+  justify-self: center;
+  width: 160px;
+  height: 44px;
+  border-radius: 999px;
+  background: ${color.primary};
+  position: relative;
+  box-shadow: 0 8px 24px ${color.shadow};
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 4px 12px ${color.shadow};
+  }
+`;
+
+export const BellBtn = styled.button`
+  appearance: none;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  line-height: 1;
+  color: ${color.sub};
+`;
+
+export const HeaderBottom = styled.div`
+  margin-top: 10px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 10px;
 `;
 
-export const Brand = styled.span`
-  font-weight: 800;
-  font-size: 18px;
-  letter-spacing: 0.2px;
+export const Logo = styled.img`
+  height: 22px;
 `;
 
-export const Location = styled.span`
+export const LocationBtn = styled.button`
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: ${color.sub};
+  font-size: 12px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
-  color: ${color.sub};
-`;
-export const LocationDot = styled.span`
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: ${color.primary};
 `;
 
+export const LocationIcon = styled.span`
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid ${color.sub};
+  display: inline-block;
+`;
+
+/* ===== Content ===== */
 export const Content = styled.main`
-  padding: 12px 14px 24px;
+  padding: 0 14px 24px;
 `;
 
 /* ===== Hero / 결제 알림 ===== */
 export const HeroCard = styled.section`
   display: grid;
-  grid-template-columns: 1fr 112px;
+  grid-template-columns: 1fr 120px;
   gap: 10px;
-  background: ${color.card};
-  border-radius: 16px;
-  padding: 16px;
-  box-shadow: 0 8px 24px ${color.shadow};
+  background: transparent; /* 배경은 페이지 배경과 동일 */
+  margin-top: 6px;
 `;
 
-export const HeroText = styled.div``;
+export const HeroText = styled.div`
+  padding-top: 8px;
+`;
 
 export const Subtle = styled.div`
   font-size: 13px;
@@ -76,31 +119,72 @@ export const Subtle = styled.div`
 `;
 
 export const Headline = styled.h1`
-  font-size: 18px;
-  line-height: 1.35;
-  margin: 0 0 8px 0;
-  font-weight: 700;
+  font-size: 26px;
+  line-height: 1.25;
+  margin: 0 0 4px 0;
+  font-weight: 800;
+  letter-spacing: -0.2px;
 `;
 
 export const Primary = styled.span`
   color: ${color.primary};
 `;
 
-export const Note = styled.div`
+export const HeroImage = styled.img`
+  width: 100%;
+  height: 92px;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 18px ${color.shadow});
+  align-self: end;
+`;
+
+/* ===== ASUS 프로모 카드 ===== */
+export const PromoCard = styled.div`
+  margin-top: 14px;
+  background: ${color.card};
+  border-radius: 18px;
+  box-shadow: 0 8px 24px ${color.shadow};
+  padding: 14px;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 12px;
+`;
+
+export const PromoLogo = styled.div`
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: #1f2937;
+  background: #f1f5f9;
+  border-radius: 14px;
+`;
+
+export const PromoBody = styled.div`
+  display: grid;
+  gap: 4px;
+`;
+
+export const PromoTitle = styled.div`
+  font-size: 15px;
+  font-weight: 800;
+`;
+
+export const PromoDesc = styled.div`
   font-size: 12px;
   color: ${color.sub};
 `;
 
-export const HeroThumb = styled.div`
-  width: 100%;
-  height: 72px;
-  border-radius: 12px;
-  background: linear-gradient(180deg, #eaf1ff, #f3f6ff);
-`;
-
-/* ===== section 공통 ===== */
+/* ===== Section 공통 ===== */
 export const Section = styled.section`
   margin-top: 18px;
+`;
+
+export const RowBetween = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const SectionTitle = styled.h2`
@@ -227,7 +311,6 @@ export const HorizontalScroll = styled.div`
   padding-bottom: 4px;
   scroll-snap-type: x mandatory;
 
-  /* 모바일 스크롤 숨김(선택) */
   &::-webkit-scrollbar {
     height: 0;
   }

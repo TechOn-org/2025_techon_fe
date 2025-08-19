@@ -1,6 +1,10 @@
 import React from "react";
 import * as S from "./styled";
 
+// public/images/... 에 둔 이미지는 import 대신 경로 문자열로 사용
+const Logo = "/images/logo.png";
+const Laptop = "/images/laptop.png";
+
 // 샘플 가로 스크롤 카드 데이터 (업사이클링 제품)
 const UPCYCLED_ITEMS = [
   { id: 1, title: "케이블 키트", badge: "오늘의 특가", price: "₩12,900" },
@@ -13,19 +17,24 @@ const UPCYCLED_ITEMS = [
 export default function MainPage() {
   return (
     <S.Wrap>
-      {/* 상단 헤더 */}
+      {/* ===== Header ===== */}
       <S.Header>
-        <S.RowBetween>
-          <S.Brand>TO</S.Brand>
-          <S.Location>
-            <S.LocationDot />
-            경기 서울시 동작구 상도동 ▾
-          </S.Location>
-        </S.RowBetween>
+        <S.HeaderTop>
+          <S.TogglePill aria-label="모드 토글" />
+          <S.BellBtn aria-label="알림">🔔</S.BellBtn>
+        </S.HeaderTop>
+
+        <S.HeaderBottom>
+          <S.Logo src={Logo} alt="Techon 로고" />
+          <S.LocationBtn>
+            <S.LocationIcon />
+            경기 서울시 동작구 상도로 ▾
+          </S.LocationBtn>
+        </S.HeaderBottom>
       </S.Header>
 
       <S.Content>
-        {/* 결제 알림 배너 */}
+        {/* ===== 결제 알림 배너 ===== */}
         <S.HeroCard>
           <S.HeroText>
             <S.Subtle>김숭실님,</S.Subtle>
@@ -34,10 +43,20 @@ export default function MainPage() {
               <br />
               결제건이 있습니다
             </S.Headline>
-            <S.Note>ASUS 제품 수리비 10% 할인</S.Note>
           </S.HeroText>
-          <S.HeroThumb aria-hidden />
+          <S.HeroImage src={Laptop} alt="노트북 이미지" />
         </S.HeroCard>
+
+        {/* ASUS 혜택 배너 */}
+        <S.PromoCard>
+          <S.PromoLogo>ASUS</S.PromoLogo>
+          <S.PromoBody>
+            <S.PromoTitle>ASUS 제품 수리비 10% 할인</S.PromoTitle>
+            <S.PromoDesc>
+              고장난 ASUS, 성능은 되찾고 비용은 아끼세요!
+            </S.PromoDesc>
+          </S.PromoBody>
+        </S.PromoCard>
 
         {/* 수리 진행 상태 */}
         <S.Section>
@@ -46,7 +65,9 @@ export default function MainPage() {
             <S.StatusLeft>
               <S.StatusBadge>진행 중</S.StatusBadge>
               <S.StatusTitle>노트북 수리</S.StatusTitle>
-              <S.StatusMeta>2025.08.19 (월) 14:00 · 알림톡 수신 완료</S.StatusMeta>
+              <S.StatusMeta>
+                2025.08.19 (월) 14:00 · 알림톡 수신 완료
+              </S.StatusMeta>
             </S.StatusLeft>
             <S.StatusIcon aria-hidden />
           </S.StatusCard>
@@ -71,7 +92,7 @@ export default function MainPage() {
           </S.ActionGrid>
         </S.Section>
 
-        {/* 필터/드롭다운 바 (샘플) */}
+        {/* 필터/드롭다운 바 */}
         <S.FilterBar>
           <S.FilterPill>내 주변 업체 둘러보기</S.FilterPill>
           <S.FilterDivider />
@@ -99,7 +120,6 @@ export default function MainPage() {
           </S.HorizontalScroll>
         </S.Section>
 
-        {/* 하단 여백 */}
         <S.BottomSpacer />
       </S.Content>
     </S.Wrap>
