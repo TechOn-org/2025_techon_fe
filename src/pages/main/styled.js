@@ -17,6 +17,7 @@ export const Wrap = styled.div`
   background: ${color.bg};
 `;
 
+
 /* ===== Header ===== */
 export const Header = styled.header`
   position: sticky;
@@ -93,6 +94,7 @@ export const LocationIcon = styled.span`
   border: 2px solid ${color.sub};
   display: inline-block;
 `;
+
 
 /* ===== Content ===== */
 export const Content = styled.main`

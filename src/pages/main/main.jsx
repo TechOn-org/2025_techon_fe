@@ -19,19 +19,17 @@ export default function MainPage() {
     <S.Wrap>
       {/* ===== Header ===== */}
       <S.Header>
-        <S.HeaderTop>
-          <S.TogglePill aria-label="모드 토글" />
-          <S.BellBtn aria-label="알림">🔔</S.BellBtn>
-        </S.HeaderTop>
+      <S.RowBetween>
+        <S.Logo src={Logo} alt="Techon 로고" />
 
-        <S.HeaderBottom>
-          <S.Logo src={Logo} alt="Techon 로고" />
-          <S.LocationBtn>
-            <S.LocationIcon />
-            경기 서울시 동작구 상도로 ▾
-          </S.LocationBtn>
-        </S.HeaderBottom>
-      </S.Header>
+        <S.LocationBtn>
+          <S.LocationIcon />
+          경기 서울시 동작구 상도로 ▾
+        </S.LocationBtn>
+
+        <S.BellBtn aria-label="알림">🔔</S.BellBtn>
+      </S.RowBetween>
+    </S.Header>
 
       <S.Content>
         {/* ===== 결제 알림 배너 ===== */}
