@@ -112,9 +112,10 @@ export const HeroText = styled.div`
   padding-top: 8px;
 `;
 
-export const Subtle = styled.div`
-  font-size: 13px;
-  color: ${color.sub};
+export const Subtitle = styled.div`
+  font-size: 26px;
+  line-height: 1.25;
+  font-weight: 800;
   margin-bottom: 6px;
 `;
 

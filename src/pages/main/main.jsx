@@ -37,7 +37,7 @@ export default function MainPage() {
         {/* ===== 결제 알림 배너 ===== */}
         <S.HeroCard>
           <S.HeroText>
-            <S.Subtle>김숭실님,</S.Subtle>
+            <S.Subtitle>김숭실님,</S.Subtitle>
             <S.Headline>
               총 <S.Primary>290,278원</S.Primary>
               <br />
