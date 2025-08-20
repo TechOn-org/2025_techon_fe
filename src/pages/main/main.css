@@ -1,0 +1,19 @@
+.card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 
+    0 8px 20px rgba(0, 102, 255, 0.15),   /* 메인 푸른빛 그림자 */
+    0 4px 10px rgba(0, 102, 255, 0.1);    /* 보조 그림자 */
+}
+
+/* 광고 썸네일: 이미지 자체에 배경을 입힘 */
+.ad-thumb {
+  width: 92px;
+  height: 92px;
+  background: #e4eefcff;   /* 원하는 배경색 */
+  border-radius: 14px;
+  padding: 8px;          /* 배경이 보이도록 여백 */
+  object-fit: contain;
+  box-shadow: 0 6px 16px rgba(42, 90, 247, 0.08);
+}
