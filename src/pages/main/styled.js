@@ -30,6 +30,8 @@ const color = {
   shadow: "rgba(15, 23, 42, 0.06)",
 };
 
+
+
 export const Wrap = styled.div`
   min-height: 100svh;
   background: ${color.bg};
@@ -154,7 +156,6 @@ export const NotificationCard = styled.div`
   box-shadow:
     0 12px 28px rgba(42, 90, 247, 0.10),
     0 4px 10px rgba(42, 90, 247, 0.06);
-  outline: 1px solid rgba(42, 90, 247, 0.10);
   outline-offset: 0;
 `;
 
