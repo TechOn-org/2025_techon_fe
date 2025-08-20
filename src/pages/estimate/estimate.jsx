@@ -67,7 +67,9 @@ function Estimate() {
         </S.PriceBox>
       </S.Section>
 
-      <S.Button>전문가 매칭하기</S.Button>
+      <S.Button onClick={() => navigate("/match")}>
+        전문가 매칭하기
+      </S.Button>
     </S.Container>
   );
 }
