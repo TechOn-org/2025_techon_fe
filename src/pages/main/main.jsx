@@ -1,82 +1,142 @@
-import React from "react";
+import React, {useState} from "react";
 import * as S from "./styled";
+import "./main.css";
 
-// 샘플 가로 스크롤 카드 데이터 (업사이클링 제품)
-const UPCYCLED_ITEMS = [
-  { id: 1, title: "케이블 키트", badge: "오늘의 특가", price: "₩12,900" },
-  { id: 2, title: "리퍼 마우스", badge: "리퍼 · A급", price: "₩19,900" },
-  { id: 3, title: "리퍼 키보드", badge: "베스트", price: "₩29,900" },
-  { id: 4, title: "배터리 팩", badge: "한정수량", price: "₩24,900" },
-  { id: 5, title: "USB 허브", badge: "인기", price: "₩9,900" },
+// public/images/... 에 둔 이미지는 import 대신 경로 문자열로 사용
+const gps = "/images/gps.svg";
+const alarm ="/images/alarm_button.svg";
+const Logo = "/images/LOGO.svg";
+const Laptop = "/images/picture.svg";
+const asus = "/images/asus.svg";
+const repair = "/images/repair.svg";
+const diagnose = "/images/diagnosis_icon.svg";
+const search = "/images/search_icon.svg";
+const market = "/images/market_icon.svg";
+const magnify = "/images/magnify.svg";
+const vector = "/images/Vector.svg";
+const upcycling = "/images/upcycling.svg";
+const handshake = "/images/handshake.svg";
+const homeGray = "/images/home-gray.svg";
+const homeBlue = "/images/home-blue.svg";
+const historyGray = "/images/history-gray.svg";
+const historyBlue = "/images/history-blue.svg";
+const heartGray = "/images/heart-gray.svg";
+const heartBlue = "/images/heart-blue.svg";
+const mypageGray = "/images/mypage-gray.svg";
+const mypageBlue = "/images/mypage-blue.svg";
+
+const UPCYCLE_BANNERS = [
+  { id: 1, title: "업사이클링\n제품 추천드립니다!", img: "/images/upcycle.png", bg: "#f59e0b" }, // 주황
+  { id: 2, title: "업사이클링\n제품 추천드립니다!", img: "/images/upcycle.png", bg: "#3b5bfd" }, // 블루
+  { id: 3, title: "업사이클링\n제품 추천드립니다!", img: "/images/upcycle.png", bg: "#111827" }, // 다크
+  { id: 4, title: "업사이클링\n제품 추천드립니다!", img: "/images/upcycle.png", bg: "#8b5cf6" }, // 퍼플
 ];
 
 export default function MainPage() {
+  const [tab, setTab] = useState("home");
   return (
     <S.Wrap>
-      {/* 상단 헤더 */}
+      {/* ===== Header ===== */}
       <S.Header>
-        <S.RowBetween>
-          <S.Brand>TO</S.Brand>
-          <S.Location>
-            <S.LocationDot />
-            경기 서울시 동작구 상도동 ▾
-          </S.Location>
-        </S.RowBetween>
-      </S.Header>
+      <S.RowBetween>
+        <S.Logo src={Logo} alt="Techon 로고" />
+
+        <S.LocationBtn >
+          <S.GpsIcon src={gps} alt="gps" />
+          경기 서울시 동작구 상도로 ▾
+        </S.LocationBtn>
+
+        <S.BellBtn aria-label="알림">
+          <S.BellIcon src={alarm} alt="알림" />
+        </S.BellBtn>
+      </S.RowBetween>
+    </S.Header>
 
       <S.Content>
-        {/* 결제 알림 배너 */}
+        {/* ===== 결제 알림 배너 ===== */}
         <S.HeroCard>
           <S.HeroText>
-            <S.Subtle>김숭실님,</S.Subtle>
+            <S.Subtitle>김숭실님,</S.Subtitle>
             <S.Headline>
               총 <S.Primary>290,278원</S.Primary>
               <br />
               결제건이 있습니다
             </S.Headline>
-            <S.Note>ASUS 제품 수리비 10% 할인</S.Note>
           </S.HeroText>
-          <S.HeroThumb aria-hidden />
+          <S.HeroImage src={Laptop} alt="노트북 이미지" />
         </S.HeroCard>
 
+        {/* ASUS 혜택 배너 */}
+        <S.PromoCard className="card">
+          <S.PromoLogo>
+            <img src={asus} alt="ASUS 로고" />
+          </S.PromoLogo>
+          <S.PromoBody>
+            <S.PromoTitle>ASUS 제품 수리비 10% 할인</S.PromoTitle>
+            <S.PromoDesc>
+              고장난 ASUS, 성능은 되찾고 비용은 아끼세요!
+            </S.PromoDesc>
+          </S.PromoBody>
+        </S.PromoCard>
+
         {/* 수리 진행 상태 */}
-        <S.Section>
-          <S.SectionTitle>수리진행</S.SectionTitle>
-          <S.StatusCard>
-            <S.StatusLeft>
-              <S.StatusBadge>진행 중</S.StatusBadge>
-              <S.StatusTitle>노트북 수리</S.StatusTitle>
-              <S.StatusMeta>2025.08.19 (월) 14:00 · 알림톡 수신 완료</S.StatusMeta>
-            </S.StatusLeft>
-            <S.StatusIcon aria-hidden />
-          </S.StatusCard>
-        </S.Section>
+        <S.NotificationCard className="card">
+        <S.NotiTextCol>
+          <S.NotiTitle>수리업체</S.NotiTitle>
+          <S.NotiStatus>수리 진행 중</S.NotiStatus>
+          <S.NotiMeta>2025.08.18(월) 오후 14:00</S.NotiMeta>
+          <S.NotiDesc>업체에서 수리를 진행중입니다.</S.NotiDesc>
+        </S.NotiTextCol>
 
-        {/* 바로가기 - 서비스 */}
-        <S.Section>
-          <S.SectionTitle>간편한 서비스</S.SectionTitle>
-          <S.ActionGrid>
-            <S.ActionButton>
-              <S.ActionIcon>🔎</S.ActionIcon>
-              <S.ActionLabel>제품 진단하기</S.ActionLabel>
-            </S.ActionButton>
-            <S.ActionButton>
-              <S.ActionIcon>🧰</S.ActionIcon>
-              <S.ActionLabel>전문가 매칭</S.ActionLabel>
-            </S.ActionButton>
-            <S.ActionButton>
-              <S.ActionIcon>♻️</S.ActionIcon>
-              <S.ActionLabel>순환 마켓</S.ActionLabel>
-            </S.ActionButton>
-          </S.ActionGrid>
-        </S.Section>
+        <S.NotiIconWrap>
+          <img src={repair} alt="수리 진행 아이콘" />
+        </S.NotiIconWrap>
+      </S.NotificationCard>
 
-        {/* 필터/드롭다운 바 (샘플) */}
-        <S.FilterBar>
-          <S.FilterPill>내 주변 업체 둘러보기</S.FilterPill>
-          <S.FilterDivider />
-          <S.FilterPill>중계 수수료 제로 ▾</S.FilterPill>
-        </S.FilterBar>
+      {/* 진행할 서비스 선택 */}
+      <S.ServiceSection className="card">
+        <S.ServiceHeader>진행할 서비스를 선택해주세요</S.ServiceHeader>
+
+        <S.ServiceList>
+          <S.ServiceItem>
+            <S.ServiceIcon src={diagnose} alt="제품 진단하기" />
+            <S.ServiceTexts>
+              <S.ServiceCaption>AI가 알려주는 제품 진단서</S.ServiceCaption>
+              <S.ServiceHeading>제품 진단하기</S.ServiceHeading>
+            </S.ServiceTexts>
+          </S.ServiceItem>
+
+          <S.ServiceItem>
+            <S.ServiceIcon src={search} alt="전문가 매칭" />
+            <S.ServiceTexts>
+              <S.ServiceCaption>나에게 딱 맞는 전문가 찾기</S.ServiceCaption>
+              <S.ServiceHeading>전문가 매칭</S.ServiceHeading>
+            </S.ServiceTexts>
+          </S.ServiceItem>
+
+          <S.ServiceItem>
+            <S.ServiceIcon src={market} alt="순환 마켓" />
+            <S.ServiceTexts>
+              <S.ServiceCaption>버려지는 부품 재활용하기</S.ServiceCaption>
+              <S.ServiceHeading>순환 마켓</S.ServiceHeading>
+            </S.ServiceTexts>
+          </S.ServiceItem>
+        </S.ServiceList>
+
+
+      </S.ServiceSection>
+
+      {/* 하단 필 버튼 2개 */}
+      <S.PillRow>
+        <S.PillButton className="card">
+          내 주변 업체 둘러보기
+          <img src={magnify} alt="돋보기 아이콘" width={18} height={18} />
+        </S.PillButton>
+        <S.PillButton className="card">
+          중계 수수료 계산하기 
+          <img src={vector} alt="계산기 아이콘" width={18} height={18} />
+        </S.PillButton>
+      </S.PillRow>
 
         {/* 업사이클링 제품 모아보기 - 가로 스크롤 */}
         <S.Section>
@@ -86,22 +146,89 @@ export default function MainPage() {
           </S.RowBetween>
 
           <S.HorizontalScroll role="list">
-            {UPCYCLED_ITEMS.map((item) => (
-              <S.ProductCard key={item.id} role="listitem">
-                <S.ProductThumb />
-                <S.ProductBody>
-                  <S.ProductBadge>{item.badge}</S.ProductBadge>
-                  <S.ProductTitle>{item.title}</S.ProductTitle>
-                  <S.ProductPrice>{item.price}</S.ProductPrice>
-                </S.ProductBody>
-              </S.ProductCard>
+            {UPCYCLE_BANNERS.map((b) => (
+              <S.UpcycleCard key={b.id} role="listitem" $bg={b.bg}>
+                <S.UpcycleTitle>
+                  {b.title.split("\n").map((t, i) => (
+                    <div key={i}>{t}</div>
+                  ))}
+                </S.UpcycleTitle>
+
+                <S.UpcycleThumbCircle>
+                  <img src={upcycling} alt="업사이클링 추천 썸네일" />
+                </S.UpcycleThumbCircle>
+              </S.UpcycleCard>
             ))}
           </S.HorizontalScroll>
-        </S.Section>
 
-        {/* 하단 여백 */}
+
+        </S.Section>
+        {/* 업사이클링 섹션 아래 광고 배너 */}
+        <S.AdBanner>
+          <S.AdText>
+            <S.AdTitle>
+              LG 제품
+              <br />
+              중개수수료 할인
+            </S.AdTitle>
+            <S.AdSubtitle>
+              오직 <S.Highlight>Tech</S.Highlight><S.Highlighting>On</S.Highlighting> 사용자에게
+            </S.AdSubtitle>
+          </S.AdText>
+
+          <S.AdThumb className="ad-thumb" src={handshake} alt="제휴 혜택" />
+          
+        </S.AdBanner>
+
+
         <S.BottomSpacer />
       </S.Content>
+      {/* <S.BottomNav>
+        <S.BottomNavInner>
+          <S.NavButton className="active">
+            <S.NavIcon src={home} alt="홈" />
+            홈
+          </S.NavButton>
+
+          <S.NavButton>
+            <S.NavIcon src={history} alt="수리내역" />
+            수리내역
+          </S.NavButton>
+
+          <S.NavButton>
+            <S.NavIcon src={heart} alt="즐겨찾기" />
+            즐겨찾기
+          </S.NavButton>
+
+          <S.NavButton>
+            <S.NavIcon src={mypage} alt="마이페이지" />
+            마이페이지
+          </S.NavButton>
+        </S.BottomNavInner>
+      </S.BottomNav> */}
+
+      <S.BottomNav>
+        <S.BottomNavInner>
+          <S.NavButton onClick={() => setTab("home")} className={tab==='home'?'active':''}>
+            <img src={tab==='home' ? homeBlue : homeGray} width={20} height={20} alt="" />
+            홈
+          </S.NavButton>
+          <S.NavButton onClick={() => setTab("history")} className={tab==='history'?'active':''}>
+            <img src={tab==='history' ? historyBlue : historyGray} width={20} height={20} alt="" />
+            수리내역
+          </S.NavButton>
+          <S.NavButton onClick={() => setTab("heart")} className={tab==='heart'?'active':''}>
+            <img src={tab==='heart' ? heartBlue : heartGray} width={20} height={20} alt="" />
+            즐겨찾기
+          </S.NavButton>
+          <S.NavButton onClick={() => setTab("mypage")} className={tab==='mypage'?'active':''}>
+            <img src={tab==='mypage' ? mypageBlue : mypageGray} width={20} height={20} alt="" />
+            마이페이지
+          </S.NavButton>
+
+        </S.BottomNavInner>
+      </S.BottomNav>
+
     </S.Wrap>
   );
 }
