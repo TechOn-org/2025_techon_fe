@@ -1,6 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
-import MainPage from "./pages/main/main";
+// import logo from './logo.svg';
+// import './App.css';
+import SplashPage from"./pages/splash/main.jsx"; 
+// import LoginPage from"./pages/login/main.jsx"; 
+// import MainPage from "./pages/main/main.jsx";
 import React from "react";
 
 function App() {
@@ -20,7 +22,9 @@ function App() {
           Learn React
         </a> */}
       {/* </header> */}
-      <MainPage />
+      <SplashPage/>
+      {/* <LoginPage /> */}
+      {/* <MainPage /> */}
     </div>
   );
 }

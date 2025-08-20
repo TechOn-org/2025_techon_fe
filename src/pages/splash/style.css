@@ -1,0 +1,13 @@
+
+.logo-container{
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(0deg, #88BDFF, #FFFFFF 50%);
+}
+
+.logo{
+  margin: 10px;
+}
