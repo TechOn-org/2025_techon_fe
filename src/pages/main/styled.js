@@ -33,7 +33,12 @@ const color = {
 
 
 export const Wrap = styled.div`
-  min-height: 100svh;
+  max-width: 412px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
   background: ${color.bg};
 `;
 
@@ -215,31 +220,40 @@ export const NotiIconWrap = styled.div`
 
 /* ===== Content ===== */
 export const Content = styled.main`
-  padding: 0 14px 64px; 
+  padding: 0 14px 84px; 
 `;
 
-/* ===== Bottom Navigation ===== */
 export const BottomNav = styled.nav`
-  position: sticky;          /* 부모 스크롤 기준 하단 고정 */
+  position: fixed;                 /* 뷰포트 기준 */
   bottom: 0;
-  z-index: 30;
+  left: 50%;                       /* 가운데 기준점 */
+  transform: translateX(-50%);     /* 정확히 중앙으로 이동 */
+  z-index: 100;
+
+  width: 100%;
+  max-width: 452px;                /* 본문과 동일 너비 */
+  box-sizing: border-box;          /* 패딩 포함 폭 계산 */
+
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: saturate(180%) blur(10px);
   border-top: 1px solid ${color.line};
-  padding: 4px 12px calc(4px + env(safe-area-inset-bottom)); /* 아이폰 홈인딘트 대응 */
+  padding: 4px 12px calc(4px + env(safe-area-inset-bottom));
 `;
+
 
 export const BottomNavInner = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-items: center;
+  width: 100%;
 `;
+
 
 export const NavButton = styled.button`
   appearance: none;
   background: transparent;
   border: 0;
-  padding: 4px 2px; /* 버튼 자체 높이도 조금 줄임 */
+  padding: 4px 2px;
   display: grid;
   place-items: center;
   gap: 4px;
@@ -252,12 +266,12 @@ export const NavButton = styled.button`
   svg {
     width: 24px;
     height: 24px;
-    fill: currentColor;    /* 기본 fill 색상 */
+    fill: currentColor;
     transition: fill .12s ease;
   }
 
   &.active { 
-    color: #408EFD;                 /* 아이콘+텍스트 동시에 파랑 */
+    color: #408EFD;
   }
 
   &:active { transform: scale(0.96); }
