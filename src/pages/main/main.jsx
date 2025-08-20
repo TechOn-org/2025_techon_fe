@@ -183,29 +183,7 @@ export default function MainPage() {
 
         <S.BottomSpacer />
       </S.Content>
-      {/* <S.BottomNav>
-        <S.BottomNavInner>
-          <S.NavButton className="active">
-            <S.NavIcon src={home} alt="홈" />
-            홈
-          </S.NavButton>
-
-          <S.NavButton>
-            <S.NavIcon src={history} alt="수리내역" />
-            수리내역
-          </S.NavButton>
-
-          <S.NavButton>
-            <S.NavIcon src={heart} alt="즐겨찾기" />
-            즐겨찾기
-          </S.NavButton>
-
-          <S.NavButton>
-            <S.NavIcon src={mypage} alt="마이페이지" />
-            마이페이지
-          </S.NavButton>
-        </S.BottomNavInner>
-      </S.BottomNav> */}
+      
 
       <S.BottomNav>
         <S.BottomNavInner>
