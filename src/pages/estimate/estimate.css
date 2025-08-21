@@ -1,0 +1,8 @@
+.estimate_card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 
+    2px 4px 8px rgba(102, 163, 255, 0.15),   /* 메인 푸른빛 그림자 */
+    1px 2px 8px rgba(226, 238, 255, 0.1);    /* 보조 그림자 */
+}
