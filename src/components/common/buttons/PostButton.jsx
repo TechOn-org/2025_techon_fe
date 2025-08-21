@@ -4,7 +4,7 @@ import styled from "styled-components";
 const StyledButton = styled.button`
     
     padding: 14px 16px;
-    font-size: 14px;
+    font-size: 16px;
     border-width: 0px;
     border-radius: 5px;
     cursor: pointer;

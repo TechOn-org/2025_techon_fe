@@ -8,10 +8,11 @@ export const Container = styled.div`
     height: 100dvh;
     margin: 0px auto;
     overflow: hidden;
-    display: flex;
     flex-direction: column;
     overscroll-behavior: none;
-  background: linear-gradient(180deg, #ffffff 0%, #eef4ff 65%, #b9ccff 100%);
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, #ffffff 0%, #eef4ff 65%, #b9ccff 100%);
 `;
 
 /* 헤더/네비 영역 */

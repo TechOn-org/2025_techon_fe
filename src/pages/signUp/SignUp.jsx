@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import Button from "../../components/common/buttons/PostButton";
 
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import * as S from "./styled.js";
 
 function SignUp() {
