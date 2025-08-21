@@ -3,22 +3,19 @@ import styled from "styled-components";
 
 const StyledTextarea = styled.textarea`
     display: flex;
-    align-items: flex-start;
-    padding: 10px 12px;
-    border-radius: 5px;
-    width: 100%;
-    background-color: #ececec;
-    outline: none;
-    color: #575757;
-    resize: none;
-    overflow: hidden;
+    width: 353px;
+    padding: 16px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid #D9D9D9;
+    background: #FFF;
+    box-shadow: 0 2px 4px 0 rgba(136, 189, 255, 0.25);
     ${(props) =>
         props.height &&
         `
         height: ${props.height}px;
     `}
-    font-size: 12px;
-    font-family: ${({theme}) => theme.fonts.NanumSquareRoundOTFR["font-family"]};
     resize: none;
 `;
 
