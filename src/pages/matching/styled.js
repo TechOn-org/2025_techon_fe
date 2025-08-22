@@ -40,6 +40,13 @@ export const MatchTextBox = styled.div`
   flex-direction: column;
 `;
 
+export const AgentText = styled.p`
+  margin-top: 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000000;
+`;
+
 export const BlueText = styled.span`
   color: #2665FE;
   font-weight: bold;
