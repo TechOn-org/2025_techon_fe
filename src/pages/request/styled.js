@@ -73,17 +73,19 @@ export const Title = styled.h2`
 
   span {
     color: #2665fe;
+    font-size: 24px;
   }
 `;
 
 export const SubInfo = styled.div`
-  font-size: 14px;
+  font-size: 16px;
   color: #2665FE;
   margin-top: 8px;
 
   .score {
     color: #CCCCCC;
     margin-right: 4px;
+    font-size: 16px;
   }
 `;
 

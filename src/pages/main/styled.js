@@ -313,6 +313,7 @@ export const Headline = styled.h1`
 
 export const Primary = styled.span`
   color: ${color.primary};
+  font-size: 26px;
 `;
 
 export const HeroImage = styled.img`
