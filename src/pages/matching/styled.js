@@ -43,6 +43,7 @@ export const MatchTextBox = styled.div`
 export const BlueText = styled.span`
   color: #2665FE;
   font-weight: bold;
+  font-size: 16px;
 `;
 
 export const SubTitle = styled.span`
@@ -81,9 +82,9 @@ export const InfoSubText = styled.div`
 
 export const InfoText = styled.p`
   margin-top: 24px;
-  text-align: center;
   font-size: 16px;
-  color: #CCCCCC; 
+  font-weight: bold;
+  color: #00000; 
 `;
 
 
