@@ -10,6 +10,7 @@ import SearchPage from "./pages/fix/search.jsx";
 import EstimatePage from "./pages/estimate/estimate.jsx";
 import MatchPage from "./pages/matching/matching.jsx";
 import Login from "./pages/login/main.jsx";
+import CompletePage from "./pages/complete/complete.jsx";
 
 export default function AppRouter() {
   return (
@@ -23,6 +24,7 @@ export default function AppRouter() {
       <Route path="/search" element={<SearchPage />} />
       <Route path="/estimate" element={<EstimatePage />} />
       <Route path="/match" element={<MatchPage />} />
+      <Route path="/complete" element={<CompletePage />} />
     </Routes>
   );
 }
