@@ -9,6 +9,7 @@ import LocationPage from "./pages/fix/location.jsx";
 import EstimatePage from "./pages/estimate/estimate.jsx";
 import MatchPage from "./pages/matching/matching.jsx";
 import CompletePage from "./pages/complete/complete.jsx";
+import RequestPage from "./pages/request/request.jsx";
 
 export default function AppRouter() {
   return (
@@ -21,6 +22,7 @@ export default function AppRouter() {
       <Route path="/estimate" element={<EstimatePage />} />
       <Route path="/match" element={<MatchPage />} />
       <Route path="/complete" element={<CompletePage />} />
+      <Route path="/request" element={<RequestPage />} />
     </Routes>
   );
 }

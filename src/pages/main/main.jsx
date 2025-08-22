@@ -115,7 +115,8 @@ export default function MainPage() {
             <S.ServiceIcon src={search} alt="전문가 매칭" />
             <S.ServiceTexts>
               <S.ServiceCaption>나에게 딱 맞는 전문가 찾기</S.ServiceCaption>
-              <S.ServiceHeading>전문가 매칭</S.ServiceHeading>
+              <S.ServiceHeading onClick={() => navigate("/match")}>
+                전문가 매칭</S.ServiceHeading>
             </S.ServiceTexts>
           </S.ServiceItem>
 
