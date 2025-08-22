@@ -5,7 +5,7 @@ const color = {
   bg: "#F9FAFD",
   card: "#FFFFFF",
   text: "#0E1117",
-  sub: "#6B7280",
+  sub: "#B0B0B0",
   primary: "#2563EB",
   click: "#408EFD",
   line: "#E5E7EB",
@@ -25,10 +25,10 @@ export const BottomNav = styled.nav`
   max-width: 452px;                /* 본문과 동일 너비 */
   box-sizing: border-box;          /* 패딩 포함 폭 계산 */
 
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: saturate(180%) blur(10px);
+  background: ${color.bg};
+  box-shadow: 0 -1px 8px 0 rgba(0, 0, 0, 0.10);
   border-top: 1px solid ${color.line};
-  padding: 4px 12px calc(4px + env(safe-area-inset-bottom));
+  padding: 8px 12px calc(4px + env(safe-area-inset-bottom));
 `;
 
 
@@ -49,7 +49,7 @@ export const NavButton = styled.button`
   place-items: center;
   gap: 4px;
   color: ${color.sub};
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   border-radius: 12px;
   transition: transform .12s ease, color .12s ease;
@@ -69,7 +69,7 @@ export const NavButton = styled.button`
 `;
 
 export const NavIcon = styled.img`
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 21px;
   object-fit: contain;
 `;

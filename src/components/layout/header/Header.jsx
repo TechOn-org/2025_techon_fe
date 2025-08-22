@@ -8,13 +8,14 @@ export const Header = () => {
   const alarm ="/images/alarm_button.svg";
   const Logo = "/images/LOGO.svg";
   
+  
   return (
     <S.Header>
           <S.RowBetween>
             <S.Logo src={Logo} alt="Techon 로고" />
             <S.LocationBtn >
               <S.GpsIcon src={gps} alt="gps" />
-              경기 서울시 동작구 상도로 ▾
+              <S.Location>지역</S.Location>
             </S.LocationBtn>
     
             <S.BellBtn aria-label="알림">
