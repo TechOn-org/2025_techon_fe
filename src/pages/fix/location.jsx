@@ -11,7 +11,7 @@ function LocationPage() {
     <S.Container>
       {/* 헤더 */}
       <S.Header>
-        <S.BackButton>
+        <S.BackButton onClick={() => navigate(-1)}>
           <img
             src="/images/backbtn.svg"
             alt="logo"
@@ -33,7 +33,7 @@ function LocationPage() {
         <S.Heading>시, 구, 등을 입력해주세요.</S.Heading>
             <TextInput
                         height={16}
-                        placeholder="제목을 작성해주세요(공백 포함 30자 제한)"
+                        placeholder="지역을 입력해주세요"
                         
                         
                     />
@@ -44,7 +44,7 @@ function LocationPage() {
           title="다음"
           backgroundColor="#2665FE"
           color="#fff"
-          onClick={() => navigate("/next")}
+          onClick={() => navigate("/search")}
         />
       </S.Footer>
     </S.Container>

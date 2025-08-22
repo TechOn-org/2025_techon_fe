@@ -49,6 +49,8 @@ export const Question = styled.h2`
 
   .highlight {
     color: #2563eb;
+    font-size: 24px;
+
   }
 `;
 
@@ -111,7 +113,7 @@ export const Heading = styled.div`
     color: var(--light-text, #CCC);
     font-size: 16px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     line-height: normal;
     margin-bottom: 12px;
 `;
@@ -131,4 +133,13 @@ export const Contents = styled.div`
     font-weight: 500;
     line-height: normal;
     margin-top: 25px;
+`;
+
+//search페이지
+// search페이지 styled.js
+export const Motion = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex: 1; /* 필요 시 남은 영역 차지해서 정중앙 배치 */
 `;

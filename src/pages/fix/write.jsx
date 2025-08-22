@@ -11,7 +11,7 @@ function WritePage() {
     <S.Container>
       {/* 헤더 */}
       <S.Header>
-        <S.BackButton>
+        <S.BackButton onClick={() => navigate(-1)}>
           <img
             src="/images/backbtn.svg"
             alt="logo"
@@ -33,7 +33,7 @@ function WritePage() {
         <S.Heading>제품 모델명을 입력해주세요</S.Heading>
             <TextInput
                         height={16}
-                        placeholder="제목을 작성해주세요(공백 포함 30자 제한)"
+                        placeholder="모델명을 입력해주세요"
                         
                         
                     />
@@ -42,7 +42,7 @@ function WritePage() {
         <S.Heading>제품에서 어떤 증상이 나타나는지 입력해주세요</S.Heading>
         <TextInput
                         height={264}
-                        placeholder="내용"
+                        placeholder="증상을 입력해주세요"
                         
         />
     </S.Contents>
@@ -52,7 +52,7 @@ function WritePage() {
         title="다음"
         backgroundColor="#2665FE"
         color="#fff"
-        onClick={() => navigate("/next")}
+        onClick={() => navigate("/location")}
         />
     </S.Footer>
     </S.Container>

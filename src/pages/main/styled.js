@@ -19,7 +19,7 @@ export const ShadowBox = styled.div`
 
 /** Design tokens */
 const color = {
-  bg: "#F5F7FB",
+  bg: "#F9FAFD",
   card: "#FFFFFF",
   text: "#0E1117",
   sub: "#6B7280",
@@ -313,6 +313,7 @@ export const Headline = styled.h1`
 
 export const Primary = styled.span`
   color: ${color.primary};
+  font-size: 26px;
 `;
 
 export const HeroImage = styled.img`

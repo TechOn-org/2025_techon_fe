@@ -1,49 +1,27 @@
 import { useState } from "react";
 import * as S from "./styled";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Submenu } from "../submenu/Submenu";
 
 export const Header = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [modalOpen, setModalOpen] = useState(false);
-
-  // 경로에 따라 이미지와 배경색 설정
-  const getHeaderConfig = () => {
-    switch (location.pathname) {
-      case "/":
-        return { imageSrc: "/images/HamBar.svg", backgroundColor: "{({theme}) => > theme.colors.headerColor" };
-      case "/myudchistory":
-        return { imageSrc: "/images/Backward.svg", backgroundColor: "{({theme}) => > theme.colors.headerColor" };
-      default:
-        return { imageSrc: "/images/Default.svg", backgroundColor: "#ffffff" };
-    }
-  };
-
-  const { imageSrc, backgroundColor } = getHeaderConfig();
-
-  const handleImageClick = () => {
-    if (imageSrc === "/images/HamBar.svg") {
-      setModalOpen((prev) => !prev);
-    } else if (imageSrc === "/images/Backward.svg") {
-      navigate(-1);
-    }
-  };
-
+  
+  const gps = "/images/gps.svg";
+  const alarm ="/images/alarm_button.svg";
+  const Logo = "/images/LOGO.svg";
+  
   return (
-    <S.Wrapper style={{ backgroundColor }}>
-      <S.Image src={imageSrc} onClick={handleImageClick} />
-      {location.pathname === "/" ? (
-        <S.Text style={{cursor: "pointer"}} onClick={() => navigate("/login")}>로그인</S.Text>
-      ) : (
-        <S.Text>우동친</S.Text>
-      )}
-      {modalOpen && (
-        <S.MainWrapper $isOpen={modalOpen}>
-          <Submenu onClose={() => setModalOpen(false)} />
-        </S.MainWrapper>
-      )}
-    </S.Wrapper>
+    <S.Header>
+          <S.RowBetween>
+            <S.Logo src={Logo} alt="Techon 로고" />
+            <S.LocationBtn >
+              <S.GpsIcon src={gps} alt="gps" />
+              경기 서울시 동작구 상도로 ▾
+            </S.LocationBtn>
+    
+            <S.BellBtn aria-label="알림">
+              <S.BellIcon src={alarm} alt="알림" />
+            </S.BellBtn>
+          </S.RowBetween>
+    </S.Header>
   );
 }
 

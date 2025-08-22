@@ -18,7 +18,7 @@ function SelectPage() {
     <S.Container>
       {/* 헤더 */}
       <S.Header>
-        <S.BackButton>
+        <S.BackButton onClick={() => navigate(-1)}>
           <img
             src="/images/backbtn.svg"
             alt="logo"
@@ -56,7 +56,7 @@ function SelectPage() {
           title="다음"
           backgroundColor="#2665FE"
           color="#fff"
-          onClick={() => navigate("/next")}
+          onClick={() => navigate("/write")}
         />
       </S.Footer>
     </S.Container>
