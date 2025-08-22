@@ -21,8 +21,8 @@ const homeGray = "/images/home-gray.svg";
 const homeBlue = "/images/home-blue.svg";
 const historyGray = "/images/history-gray.svg";
 const historyBlue = "/images/history-blue.svg";
-const heartGray = "/images/heart-gray.svg";
-const heartBlue = "/images/heart-blue.svg";
+const recycleGray = "/images/recycle-gray.svg";
+const recycleBlue = "/images/recycle-blue.svg";
 const mypageGray = "/images/mypage-gray.svg";
 const mypageBlue = "/images/mypage-blue.svg";
 
@@ -198,11 +198,11 @@ export default function MainPage() {
           </S.NavButton>
           <S.NavButton onClick={() => setTab("history")} className={tab==='history'?'active':''}>
             <img src={tab==='history' ? historyBlue : historyGray} width={20} height={20} alt="" />
-            수리내역
+            결제내역
           </S.NavButton>
-          <S.NavButton onClick={() => setTab("heart")} className={tab==='heart'?'active':''}>
-            <img src={tab==='heart' ? heartBlue : heartGray} width={20} height={20} alt="" />
-            즐겨찾기
+          <S.NavButton onClick={() => setTab("recycle")} className={tab==='recycle'?'active':''}>
+            <img src={tab==='recycle' ? recycleBlue : recycleGray} width={20} height={20} alt="" />
+            순환마켓
           </S.NavButton>
           <S.NavButton onClick={() => setTab("mypage")} className={tab==='mypage'?'active':''}>
             <img src={tab==='mypage' ? mypageBlue : mypageGray} width={20} height={20} alt="" />
