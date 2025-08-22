@@ -1,8 +1,9 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import * as S from "./styled";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/layout/footer/Footer";
 import Header from "../../components/layout/header/Header";
+import LocationBtn from "../../components/location/LocationBtn";
 import "./main.css";
 
 // public/images/... 에 둔 이미지는 import 대신 경로 문자열로 사용
@@ -46,10 +47,7 @@ export default function MainPage() {
       <S.RowBetween>
         <S.Logo src={Logo} alt="Techon 로고" />
 
-        <S.LocationBtn >
-          <S.GpsIcon src={gps} alt="gps" />
-          경기 서울시 동작구 상도로 ▾
-        </S.LocationBtn>
+        <LocationBtn />
 
         <S.BellBtn aria-label="알림">
           <S.BellIcon src={alarm} alt="알림" />
