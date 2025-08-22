@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import * as S from "./styled";
+import { useNavigate } from "react-router-dom";
 import "./main.css";
 
 // public/images/... 에 둔 이미지는 import 대신 경로 문자열로 사용
@@ -34,6 +35,8 @@ const UPCYCLE_BANNERS = [
 
 export default function MainPage() {
   const [tab, setTab] = useState("home");
+  const navigate = useNavigate();
+
   return (
     <S.Wrap>
       {/* ===== Header ===== */}
@@ -99,10 +102,12 @@ export default function MainPage() {
 
         <S.ServiceList>
           <S.ServiceItem>
-            <S.ServiceIcon src={diagnose} alt="제품 진단하기" />
+            <S.ServiceIcon src={diagnose} alt="제품 진단하기"/>
             <S.ServiceTexts>
               <S.ServiceCaption>AI가 알려주는 제품 진단서</S.ServiceCaption>
-              <S.ServiceHeading>제품 진단하기</S.ServiceHeading>
+              <S.ServiceHeading onClick={() => navigate("/estimate")}>
+                제품 진단하기
+              </S.ServiceHeading>
             </S.ServiceTexts>
           </S.ServiceItem>
 
