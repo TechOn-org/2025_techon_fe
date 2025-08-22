@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import * as S from "./styled";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../components/layout/footer/Footer";
+import Header from "../../components/layout/header/Header";
 import "./main.css";
 
 // public/images/... 에 둔 이미지는 import 대신 경로 문자열로 사용
@@ -34,7 +36,7 @@ const UPCYCLE_BANNERS = [
 ];
 
 export default function MainPage() {
-  const [tab, setTab] = useState("home");
+  const [tab, setTab] = useState("main");
   const navigate = useNavigate();
 
   return (
@@ -105,7 +107,7 @@ export default function MainPage() {
             <S.ServiceIcon src={diagnose} alt="제품 진단하기"/>
             <S.ServiceTexts>
               <S.ServiceCaption>AI가 알려주는 제품 진단서</S.ServiceCaption>
-              <S.ServiceHeading onClick={() => navigate("/estimate")}>
+              <S.ServiceHeading onClick={() => navigate("/select")}>
                 제품 진단하기
               </S.ServiceHeading>
             </S.ServiceTexts>
@@ -193,23 +195,7 @@ export default function MainPage() {
 
       <S.BottomNav>
         <S.BottomNavInner>
-          <S.NavButton onClick={() => setTab("home")} className={tab==='home'?'active':''}>
-            <img src={tab==='home' ? homeBlue : homeGray} width={20} height={20} alt="" />
-            홈
-          </S.NavButton>
-          <S.NavButton onClick={() => setTab("history")} className={tab==='history'?'active':''}>
-            <img src={tab==='history' ? historyBlue : historyGray} width={20} height={20} alt="" />
-            결제내역
-          </S.NavButton>
-          <S.NavButton onClick={() => setTab("recycle")} className={tab==='recycle'?'active':''}>
-            <img src={tab==='recycle' ? recycleBlue : recycleGray} width={20} height={20} alt="" />
-            순환마켓
-          </S.NavButton>
-          <S.NavButton onClick={() => setTab("mypage")} className={tab==='mypage'?'active':''}>
-            <img src={tab==='mypage' ? mypageBlue : mypageGray} width={20} height={20} alt="" />
-            마이페이지
-          </S.NavButton>
-
+          <Footer tab={tab} setTab={setTab} />
         </S.BottomNavInner>
       </S.BottomNav>
 

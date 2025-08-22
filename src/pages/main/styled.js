@@ -19,7 +19,7 @@ export const ShadowBox = styled.div`
 
 /** Design tokens */
 const color = {
-  bg: "#F5F7FB",
+  bg: "#F9FAFD",
   card: "#FFFFFF",
   text: "#0E1117",
   sub: "#6B7280",

@@ -44,8 +44,8 @@ function SearchPage() {
   // 5초 뒤 자동 이동
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate("/match"); // 원하는 경로로 이동
-    }, 50000);
+      navigate("/estimate"); // 원하는 경로로 이동
+    }, 5000);
     return () => clearTimeout(timer);
   }, [navigate]);
 
