@@ -107,7 +107,9 @@ export const ListItem = styled.div`
     font-size: 12px;
     color: #888;
     margin: 0;
-  }
+    text-align: right;
+}
+
 `;
 
 //mypage

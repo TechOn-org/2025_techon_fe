@@ -1,4 +1,4 @@
-// src/pages/signUp/styled.js
+// src/pages/login/styled.js
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -15,37 +15,35 @@ export const Container = styled.div`
     background: linear-gradient(180deg, #FFF 62.5%, #88BDFF 100%);
 `;
 
-/* 헤더/네비 영역 */
-export const Nav = styled.nav`
-  box-sizing: border-box; /* padding 포함해도 100% 초과 X */
-  margin-top: 100px;
+export const LogoContainer = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
   margin-bottom: 64px;
+
+  img {
+    margin: 8px 0;
+    max-width: 200px;
+    height: auto;
+  }
 `;
 
-/* 본문 영역 */
 export const Main = styled.main`
-  box-sizing: border-box; /* padding 포함해도 100% 초과 X */
+  box-sizing: border-box;
   width: 100%;
   padding: 0 20px 40px;
-  flex: 1 1 auto;         /* 남는 세로 공간 채우기 */
-  overflow-y: auto;       /* 내용 많으면 내부 스크롤 */
+  flex: 1 1 auto;
+  overflow-y: auto;
   overscroll-behavior: contain;
 `;
-/* ───────── 폼 ───────── */
+
 export const FormGroup = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
   gap: 8px;
   margin-bottom: 32px;
-`;
-
-export const InputWithCheck = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 
   label {
     font-size: 14px;
@@ -73,16 +71,40 @@ export const InputField = styled.input`
   }
 `;
 
-export const ErrorMessage = styled.p`
-  margin: 4px 2px 0;
-  color: #ef4444;
-  font-size: 12px;
+export const ButtonRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
 `;
 
-export const ButtonRow = styled.div`
-  position: relative;
-  bottom: 24px;
-  margin-top: 60px;
-  display: flex;
-  justify-content: center;
+export const SignInButton = styled.button`
+  background-color: #2665fe;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #1e4ecc;
+  }
+`;
+
+export const SignUpButton = styled.button`
+  background-color: #fff;
+  border: 2px solid #2665fe;
+  color: #2665fe;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #2665fe;
+    color: #fff;
+  }
 `;

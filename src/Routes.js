@@ -20,7 +20,7 @@ import MarketPage from "./pages/detail/market.jsx";
 export default function AppRouter() {
   return (
     <Routes>
-      <Route path="/" element={<SignUp />} />
+      <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
       <Route path="/main" element={<MainPage />} />
       <Route path="/select" element={<SelectPage />} />
@@ -29,7 +29,7 @@ export default function AppRouter() {
       <Route path="/search" element={<SearchPage />} />
       <Route path="/estimate" element={<EstimatePage />} />
       <Route path="/match" element={<MatchPage />} />
-      <Route path="/splash" element = {<SplashPage/>}/>
+      <Route path="/" element = {<SplashPage/>}/>
       <Route path="/complete" element={<CompletePage />} />
       <Route path="/request" element={<RequestPage />} />
       <Route path="/history" element={<HistoryPage />} />

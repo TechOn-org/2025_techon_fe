@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import Button from "../../components/common/buttons/PostButton";
-
 import { useNavigate } from "react-router-dom";
 import * as S from "./styled.js";
+import axios from "axios";
 
 function SignUp() {
   const [memberId, setMemberId] = useState("");
@@ -10,7 +10,8 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
-  // 🔎 간단한 유효성 예시 (원하는 규칙에 맞춰 수정)
+  const navigate = useNavigate();
+
   const isIdValid = /^[A-Za-z0-9]{8,}$/.test(memberId);
   const isNicknameValid = nickname.length <= 10 && nickname.length > 0;
   const isPasswordValid =
@@ -20,21 +21,43 @@ function SignUp() {
     password.length >= 10;
   const isPasswordMismatch = passwordConfirm && password !== passwordConfirm;
 
+  const handleSignUp = async () => {
+    if (!isIdValid || !isNicknameValid || !isPasswordValid || isPasswordMismatch) {
+      alert("입력값을 확인해주세요.");
+      return;
+    }
+
+    try {
+  const response = await axios.post("/api/auth/signup", {
+    username: memberId,   // 여기서 username으로 보냄
+    nickname,
+    password
+  });
+
+  console.log("회원가입 성공:", response.data);
+  alert("회원가입이 완료되었습니다!");
+  navigate("/login");
+} catch (error) {
+  console.error("회원가입 실패:", error.response || error.message);
+  alert(error.response?.data?.message || "회원가입에 실패했습니다.");
+}
+
+  };
+
   return (
     <S.Container>
       <S.Main>
         <S.Nav>
-        <img 
-          src="/images/logo_icon.svg" 
-          alt="logo" 
-          style={{ width: "109px", height: "auto" }} 
-        />
-      </S.Nav>
+          <img
+            src="/images/logo_icon.svg"
+            alt="logo"
+            style={{ width: "109px", height: "auto" }}
+          />
+        </S.Nav>
+
         <>
           <S.FormGroup>
-            <S.InputWithCheck>
-              <label htmlFor="username">아이디 입력</label>
-            </S.InputWithCheck>
+            <label htmlFor="username">아이디 입력</label>
             <S.InputField
               type="text"
               id="username"
@@ -77,8 +100,7 @@ function SignUp() {
             />
             {!isPasswordValid && password && (
               <S.ErrorMessage>
-                비밀번호는 영문 대소문자, 숫자를 포함하여 10자 이상이어야
-                합니다.
+                비밀번호는 영문 대소문자, 숫자를 포함하여 10자 이상이어야 합니다.
               </S.ErrorMessage>
             )}
           </S.FormGroup>
@@ -96,18 +118,20 @@ function SignUp() {
               <S.ErrorMessage>비밀번호가 일치하지 않습니다.</S.ErrorMessage>
             )}
           </S.FormGroup>
+
           <S.ButtonRow>
-          <Button
-                    height="41px"
-                    title={"다음"}
-                    color="#EEEEEE"
-                    backgroundColor="#2665FE"
-                    
-          />
+            <Button
+              height="41px"
+              title={"회원가입"}
+              color="#EEEEEE"
+              backgroundColor="#2665FE"
+              onClick={handleSignUp}
+            />
           </S.ButtonRow>
         </>
       </S.Main>
     </S.Container>
   );
 }
+
 export default SignUp;
