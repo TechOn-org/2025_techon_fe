@@ -5,8 +5,9 @@ export const Container = styled.div`
   margin: 0 auto;
   background: #fff;
   border-radius: 12px;
-  overflow: hidden;
+  overflow-y: auto;
   font-family: Pretendard, sans-serif;
+  padding-bottom: 80px; 
 `;
 
 export const HeaderWrapper = styled.div`
@@ -220,4 +221,42 @@ export const NoticeText = styled.p`
   font-size: 13px;
   color: #999;
   margin-top: 8px;
+`;
+
+export const FixedButton = styled.button`
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  max-width: 412px;
+  padding: 16px;
+  background: #2665fe;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 100;
+`;
+
+export const CardHeader = styled.div`
+  display: flex;
+  justify-content: space-between;  /* 텍스트와 아이콘을 양끝으로 */
+  align-items: center;             /* 수직 가운데 정렬 */
+  padding: 12px 16px;              /* 카드 안쪽 여백 */
+  cursor: pointer;
+  font-weight: 600;
+
+  span {
+    font-size: 16px;
+    font-weight: bold;
+  }
+`;
+
+export const ToggleArrow = styled.span`
+  font-size: 14px;
+  transition: transform 0.3s;
+  transform: ${({ isOpen }) => (isOpen ? "rotate(180deg)" : "rotate(0deg)")};
 `;

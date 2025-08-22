@@ -12,7 +12,7 @@ function Estimate() {
     <S.Container>
       {/* 헤더 */}
        <S.Header>
-        <S.BackButton onClick={() => navigate("/main")}>←</S.BackButton>
+        <S.BackButton onClick={() => navigate("/location")}>←</S.BackButton>
       </S.Header>
 
       {/* 아이콘 + 텍스트 */}

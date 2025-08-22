@@ -48,7 +48,11 @@ function Match() {
       {/* 업체 카드 리스트 */}
       <S.CardList>
       {companies.map((c, idx) => (
-        <S.CompanyCard key={c.id} className="matching_card">
+        <S.CompanyCard
+          key={c.id}
+          className="matching_card"
+          onClick={() => navigate("/request")}
+        >
           <S.RankBadge>추천순위 {idx + 1}위</S.RankBadge>
           <S.CompanyImage src={c.imageUrl || sampleImg} alt={c.name} />
           <S.CompanyName>{c.name}</S.CompanyName>
@@ -69,7 +73,7 @@ function Match() {
     
     <S.InfoText>원하는 업체가 아니신가요?</S.InfoText>
 
-      <S.Button onClick={() => navigate("/match")}>
+      <S.Button onClick={() => navigate("/select")}>
         새로운 견적 받기
       </S.Button>
    </S.Container>
