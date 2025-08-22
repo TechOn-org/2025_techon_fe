@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./styled";
 import "./matching.css";
@@ -10,12 +10,23 @@ const info = "/images/info.svg";
 function Match() {
     const navigate = useNavigate();
 
-    // 샘플 데이터
-    const companies = [
-      { id: 1, name: "경성테크", rating: 4.8, done: 355, reviews: 59 },
-      { id: 2, name: "경성테크", rating: 4.8, done: 355, reviews: 59 },
-      { id: 3, name: "경성테크", rating: 4.8, done: 355, reviews: 59 },
-    ];
+    // 업체 목록 상태 관리
+    const [companies, setCompanies] = useState([]);
+
+    useEffect(() => {
+      // 🚨 백엔드 API 연결 시 수정
+      // 예시: fetch("/api/match/companies")
+      //   .then(res => res.json())
+      //   .then(data => setCompanies(data))
+      //   .catch(err => console.error(err));
+
+      // --- 임시 더미 데이터 (백엔드 붙기 전까지) ---
+      setCompanies([
+        { id: 1, name: "경성테크", rating: 4.8, done: 355, reviews: 59 },
+        { id: 2, name: "에이스리페어", rating: 4.5, done: 280, reviews: 41 },
+        { id: 3, name: "스마트수리센터", rating: 4.7, done: 300, reviews: 52 },
+      ]);
+    }, []);
 
   return (
     <S.Container>
@@ -35,7 +46,8 @@ function Match() {
 
       {/* 안내문 */}
       <S.AgentText>
-      맞춤 업체 모아보기 <S.BlueText>3</S.BlueText>
+      맞춤 업체 모아보기{" "}
+       <S.BlueText>{companies.length}</S.BlueText>
       </S.AgentText>
 
       <S.InfoBox>

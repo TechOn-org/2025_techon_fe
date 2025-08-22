@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./styled";
 import "./estimate.css";
@@ -7,6 +7,23 @@ const diagnose = "/images/diagnose.svg";
 
 function Estimate() {
     const navigate = useNavigate();
+    const [estimate, setEstimate] = useState(null);
+
+    useEffect(() => {
+    const fetchEstimate = async () => {
+      try {
+        const res = await fetch("/api/estimate"); // 실제 API 주소
+        const data = await res.json();
+        setEstimate(data);
+      } catch (error) {
+        console.error("Estimate 불러오기 실패:", error);
+      }
+    };
+
+    fetchEstimate();
+  }, []);
+
+  if (!estimate) return <p>로딩 중...</p>;
 
   return (
     <S.Container>
@@ -28,10 +45,10 @@ function Estimate() {
       <S.Section>
         <S.SectionTitle>기본 정보</S.SectionTitle>
         <S.InfoBox className="estimate_card">
-            <span className="label">제품모델명</span><br />iPhone 15 Pro
+            <span className="label">제품모델명</span><br />{estimate.modelName}
         </S.InfoBox>
         <S.InfoBox className="estimate_card">
-            <span className="label">분류</span><br />휴대폰/태블릿
+            <span className="label">분류</span><br />{estimate.modelName}
         </S.InfoBox>
     </S.Section>
 
@@ -39,10 +56,10 @@ function Estimate() {
       <S.Section>
         <S.SectionTitle>제품 상태</S.SectionTitle>
         <S.InfoBox className="estimate_card">
-            <span className="label">진단결과</span><br />액정 교체
+            <span className="label">진단결과</span><br />{estimate.diagnosis}
         </S.InfoBox>
         <S.InfoBox className="estimate_card">
-            <span className="label">교체가 필요한 부품</span><br />액정 디스플레이
+            <span className="label">교체가 필요한 부품</span><br />{estimate.parts}
         </S.InfoBox>
       </S.Section>
 
@@ -54,14 +71,15 @@ function Estimate() {
           <S.Row>
             <S.Label>수수료율</S.Label>
             <S.Value bold>
-            ~ 5.5<S.Highlight> %</S.Highlight>
+              ~ 5.5 <S.Highlight> %</S.Highlight>
             </S.Value>
         </S.Row>
 
           <S.Row>
             <S.Label>금액</S.Label>
             <S.Value bold>
-            350,000 ~ 450,000<S.Highlight> 원</S.Highlight>
+            {estimate.minPrice.toLocaleString()} ~ {estimate.maxPrice.toLocaleString()}
+            <S.Highlight> 원</S.Highlight>
             </S.Value>
         </S.Row>
         </S.PriceBox>

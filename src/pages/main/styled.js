@@ -23,7 +23,7 @@ const color = {
   card: "#FFFFFF",
   text: "#0E1117",
   sub: "#6B7280",
-  primary: "#2563EB",
+  primary: "#2665FE",
   click: "#408EFD",
   line: "#E5E7EB",
   pill: "#EEF2FF",
@@ -45,41 +45,13 @@ export const Wrap = styled.div`
 
 /* ===== Header ===== */
 export const Header = styled.header`
-  position: sticky;
+  
   top: 0;
   z-index: 10;
   background: ${color.bg};
   padding: 14px 16px 8px;
 `;
 
-export const HeaderTop = styled.div`
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-`;
-
-export const TogglePill = styled.div`
-  justify-self: center;
-  width: 160px;
-  height: 44px;
-  border-radius: 999px;
-  background: ${color.primary};
-  position: relative;
-  box-shadow: 0 8px 24px ${color.shadow};
-
-  &::after {
-    content: "";
-    position: absolute;
-    right: 8px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: #fff;
-    box-shadow: 0 4px 12px ${color.shadow};
-  }
-`;
 
 export const BellBtn = styled.button`
   appearance: none;
@@ -98,20 +70,20 @@ export const HeaderBottom = styled.div`
 `;
 
 export const Logo = styled.img`
-  height: 22px;
+  width: 24.663px;
+  height: 17px;
 `;
 
 export const GpsIcon = styled.img`
   width: 16px;
   height: 16px;
-  margin-right: 8px;
-  display: inline-block;
-  vertical-align: middle;
+  flex-shrink: 0;
+  aspect-ratio: 1/1;
 `;
 
 export const BellIcon = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 17px;
 `;
 
 export const LocationBtn = styled.button`
@@ -119,7 +91,7 @@ export const LocationBtn = styled.button`
   border: none;
   background: transparent;
   color: ${color.sub};
-  font-size: 12px;
+  font-size: 16px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -285,30 +257,38 @@ export const NavIcon = styled.img`
 
 /* ===== Hero / 결제 알림 ===== */
 export const HeroCard = styled.section`
-  display: grid;
-  grid-template-columns: 1fr 120px;
-  gap: 10px;
-  background: transparent; /* 배경은 페이지 배경과 동일 */
-  margin-top: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;   /* 오른쪽 이미지를 하단 정렬 */
+  padding: 20px 24px;
+  margin-top: 16px;
+
 `;
 
 export const HeroText = styled.div`
-  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 `;
 
 export const Subtitle = styled.div`
-  font-size: 26px;
-  line-height: 1.25;
-  font-weight: 800;
-  margin-bottom: 6px;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+ 
 `;
 
 export const Headline = styled.h1`
-  font-size: 26px;
-  line-height: 1.25;
-  margin: 0 0 4px 0;
-  font-weight: 800;
-  letter-spacing: -0.2px;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0;  
 `;
 
 export const Primary = styled.span`
@@ -317,8 +297,8 @@ export const Primary = styled.span`
 `;
 
 export const HeroImage = styled.img`
-  width: 100%;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
   filter: drop-shadow(0 12px 18px ${color.shadow});
   align-self: end;
