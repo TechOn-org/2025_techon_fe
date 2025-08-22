@@ -34,9 +34,9 @@ function Match() {
       </S.MatchBox>
 
       {/* 안내문 */}
-      <S.InfoText>
+      <S.AgentText>
       맞춤 업체 모아보기 <S.BlueText>3</S.BlueText>
-      </S.InfoText>
+      </S.AgentText>
 
       <S.InfoBox>
         <S.InfoIcon src={info} alt="info icon" />
