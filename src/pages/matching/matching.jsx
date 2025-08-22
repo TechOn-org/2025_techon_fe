@@ -73,7 +73,7 @@ function Match() {
     
     <S.InfoText>원하는 업체가 아니신가요?</S.InfoText>
 
-      <S.Button onClick={() => navigate("/match")}>
+      <S.Button onClick={() => navigate("/select")}>
         새로운 견적 받기
       </S.Button>
    </S.Container>

@@ -1,20 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./styled";
 import "./request.css";
 
+
 const sampleImg = "/images/sample_building.svg";
 const companyHeader = "/images/company-header.svg";
+const upIcon = "/images/up.svg";
+const downIcon = "/images/down.svg";
 
 const Request = () => {
     const navigate = useNavigate();
+    const [isOpen, setIsOpen] = useState(true);
 
   return (
     <S.Container>
       {/* 상단 업체 이미지 */}
       <S.HeaderWrapper>
         <S.HeaderImage src={companyHeader} alt="업체 대표 이미지" />
-        <S.BackButton onClick={() => navigate("/main")}>←</S.BackButton>
+        <S.BackButton onClick={() => navigate("/match")}>←</S.BackButton>
       </S.HeaderWrapper>
 
       {/* 업체 프로필 */}
@@ -77,37 +81,50 @@ const Request = () => {
 
       {/* 견적 카드 */}
     <S.EstimateCard className="review_card">
-    <S.RequestButton>업체에 견적서 보내기</S.RequestButton>
 
-    <S.EstimateGrid>
-        <S.EstimateRow>
-        <S.EstimateLabel>수리 유형</S.EstimateLabel>
-        <S.EstimateValue>휴대폰/태블릿</S.EstimateValue>
-        </S.EstimateRow>
+      {/* 카드 헤더 */}
+    <S.CardHeader onClick={() => setIsOpen(!isOpen)}>
+      <span>내 선택 정보</span>
+      {isOpen ? <img src={upIcon} alt="up" /> : <img src={downIcon} alt="down" />}
+    </S.CardHeader>
 
-        <S.EstimateRow>
-        <S.EstimateLabel>위치</S.EstimateLabel>
-        <S.EstimateValue>서울시 동작구 상도동</S.EstimateValue>
-        </S.EstimateRow>
+    {/* 카드 내용 (토글) */}
+      {isOpen && (
+        <S.EstimateGrid>
+            <S.EstimateRow>
+            <S.EstimateLabel>수리 유형</S.EstimateLabel>
+            <S.EstimateValue>휴대폰/태블릿</S.EstimateValue>
+            </S.EstimateRow>
 
-        <S.EstimateRow>
-        <S.EstimateLabel>진단 결과</S.EstimateLabel>
-        <S.EstimateValue>액정 교체</S.EstimateValue>
-        </S.EstimateRow>
+            <S.EstimateRow>
+            <S.EstimateLabel>위치</S.EstimateLabel>
+            <S.EstimateValue>서울시 동작구 상도동</S.EstimateValue>
+            </S.EstimateRow>
 
-        <S.EstimateRow>
-        <S.EstimateLabel>교체에 필요한 부품</S.EstimateLabel>
-        <S.EstimateValue>액정 디스플레이</S.EstimateValue>
-        </S.EstimateRow>
+            <S.EstimateRow>
+            <S.EstimateLabel>진단 결과</S.EstimateLabel>
+            <S.EstimateValue>액정 교체</S.EstimateValue>
+            </S.EstimateRow>
 
-        <S.EstimateRow style={{ gridColumn: "1 / span 2" }}>
-        <S.EstimateLabel>예상 결제 금액</S.EstimateLabel>
-        <S.EstimatePrice>330,000원</S.EstimatePrice>
-        </S.EstimateRow>
-    </S.EstimateGrid>
+            <S.EstimateRow>
+            <S.EstimateLabel>교체에 필요한 부품</S.EstimateLabel>
+            <S.EstimateValue>액정 디스플레이</S.EstimateValue>
+            </S.EstimateRow>
+
+            <S.EstimateRow style={{ gridColumn: "1 / span 2" }}>
+            <S.EstimateLabel>예상 결제 금액</S.EstimateLabel>
+            <S.EstimatePrice>330,000원</S.EstimatePrice>
+            </S.EstimateRow>
+          </S.EstimateGrid>
+        )}
     </S.EstimateCard>
 
     <S.NoticeText>예약 후 확인은 영업일 기준 1~2일 소요됩니다.</S.NoticeText>
+
+    {/* 고정 버튼 */}
+    <S.FixedButton onClick={() => navigate("/complete")}>
+      업체에 견적서 보내기
+    </S.FixedButton>
 
     </S.Container>
   );
