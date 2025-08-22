@@ -180,3 +180,19 @@ export const NoticeText = styled.p`
   font-size: 14px;
   color: #999;
 `;
+
+export const BackHome = styled.p`
+  color: var(--light-text, #CCC);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: auto;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+`;
