@@ -5,6 +5,7 @@ import Footer from "../../components/layout/footer/Footer";
 
 function HistoryPage() {
     const [tab, setTab] = useState("history");
+    const Laptop = "/images/picture.svg";
 
     // 더미 데이터 (API 연동 시 교체)
     const historyData = [
@@ -18,16 +19,17 @@ function HistoryPage() {
     return (
         <S.Container>
         <Header />
-
         {/* 상단 요약 영역 */}
         <S.Summary>
-            <div>
-            <p><strong>김승실님,</strong></p>
-            <p>
-                <span className="highlight">총 5건</span>의 수리를 <br /> 진행했어요!
-            </p>
-            </div>
-            <img src="/images/laptop.png" alt="summary-img" />
+            <S.HeroText>
+                <S.Subtitle>김숭실님,</S.Subtitle>
+                <S.Headline>
+                    총 <S.Primary>5건의 수리를</S.Primary>
+                    <br />
+                    진행했어요!
+                </S.Headline>
+            </S.HeroText>
+            <S.HeroImage src={Laptop} alt="노트북 이미지" />
         </S.Summary>
 
         {/* 필터 + 검색 */}

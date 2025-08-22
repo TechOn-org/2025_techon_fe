@@ -5,7 +5,7 @@ const color = {
   bg: "#F9FAFD",
   card: "#FFFFFF",
   text: "#0E1117",
-  sub: "#6B7280",
+  sub: "#B0B0B0",
   primary: "#2563EB",
   click: "#408EFD",
   line: "#E5E7EB",
@@ -22,33 +22,11 @@ export const Header = styled.header`
   padding: 14px 16px 8px;
 `;
 
-export const HeaderTop = styled.div`
-  display: grid;
-  grid-template-columns: 1fr auto;
+// 헤더/섹션 타이틀 라인 정렬용
+export const RowBetween = styled.div`
+  display: flex;
   align-items: center;
-`;
-
-export const TogglePill = styled.div`
-  justify-self: center;
-  width: 160px;
-  height: 44px;
-  border-radius: 999px;
-  background: ${color.primary};
-  position: relative;
-  box-shadow: 0 8px 24px ${color.shadow};
-
-  &::after {
-    content: "";
-    position: absolute;
-    right: 8px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: #fff;
-    box-shadow: 0 4px 12px ${color.shadow};
-  }
+  justify-content: space-between;
 `;
 
 export const BellBtn = styled.button`
@@ -58,13 +36,6 @@ export const BellBtn = styled.button`
   font-size: 20px;
   line-height: 1;
   color: ${color.sub};
-`;
-
-export const HeaderBottom = styled.div`
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
 `;
 
 export const Logo = styled.img`
@@ -77,6 +48,11 @@ export const GpsIcon = styled.img`
   margin-right: 8px;
   display: inline-block;
   vertical-align: middle;
+`;
+
+export const Location = styled.div`
+  font-size: 16px;
+  color: #999999;
 `;
 
 export const BellIcon = styled.img`
@@ -93,11 +69,4 @@ export const LocationBtn = styled.button`
   display: inline-flex;
   align-items: center;
   gap: 6px;
-`;
-
-// 헤더/섹션 타이틀 라인 정렬용
-export const RowBetween = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 `;

@@ -15,10 +15,10 @@ function MyPage() {
         {/* 프로필 영역 */}
         <S.ProfileSection>
             <S.Avatar src="/images/profile.svg" alt="프로필" />
-            <div>
+            <S.Info>
             <p className="id">@gkxsodud._.05</p>
             <h3 className="name">김승실</h3>
-            </div>
+            </S.Info>
         </S.ProfileSection>
 
         {/* 마일리지 / 쿠폰 / 할인 */}
@@ -72,7 +72,7 @@ function MyPage() {
         <S.MenuBox>
             <S.MenuItem>
             <img src="/images/alarm.svg" alt="알람설정" />
-            <span>알람 설정</span>
+            <span>알림 설정</span>
             </S.MenuItem>
             <S.MenuItem>
             <img src="/images/customer.svg" alt="고객센터" />
