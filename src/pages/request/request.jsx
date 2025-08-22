@@ -61,16 +61,16 @@ const Request = () => {
           </S.ReviewCard>
 
           <S.ReviewCard className="review_card">
-            <S.ReviewTitle>춤추는 개구리</S.ReviewTitle>
-            <S.ReviewScore>★ <span>5.0</span> </S.ReviewScore>
+            <S.ReviewTitle>도로위의 비둘기</S.ReviewTitle>
+            <S.ReviewScore>★ <span>4.8</span> </S.ReviewScore>
             <S.ReviewContent>
               제품 설명도 잘 해주시고, 가격도 만족스러워요.
             </S.ReviewContent>
           </S.ReviewCard>
 
           <S.ReviewCard className="review_card">
-            <S.ReviewTitle>춤추는 개구리</S.ReviewTitle>
-            <S.ReviewScore>★ <span>5.0</span></S.ReviewScore>
+            <S.ReviewTitle>멋쟁이 토마토</S.ReviewTitle>
+            <S.ReviewScore>★ <span>4.6</span></S.ReviewScore>
             <S.ReviewContent>
               기사님이 매우 친절하셨어요. 추천합니다!
             </S.ReviewContent>

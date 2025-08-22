@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as S from "./styled";
 import "./complete.css";
 
@@ -11,6 +12,7 @@ const Complete = () => {
   const [openCards, setOpenCards] = useState([]);
 
   const tabs = ["전체", "진행중", "완료", "만료/취소"];
+  const navigate = useNavigate();
 
   const data = [
     {
@@ -106,6 +108,9 @@ const Complete = () => {
           
         ))}
       </S.CardList>
+
+
+      <S.BackHome onClick={() => navigate("/main")} > 홈으로 돌아가기 </S.BackHome>
     </S.Container>
   );
 };

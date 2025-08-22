@@ -44,7 +44,6 @@ export default function MainPage() {
     <S.Wrap>
       {/* ===== Header ===== */}
       <Header />
-
       <S.Content>
         {/* ===== 결제 알림 배너 ===== */}
         <S.HeroCard>
