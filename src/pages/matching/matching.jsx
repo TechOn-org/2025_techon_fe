@@ -9,24 +9,40 @@ const info = "/images/info.svg";
 
 function Match() {
     const navigate = useNavigate();
-
-    // 업체 목록 상태 관리
     const [companies, setCompanies] = useState([]);
+    const [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
-      // 🚨 백엔드 API 연결 시 수정
-      // 예시: fetch("/api/match/companies")
-      //   .then(res => res.json())
-      //   .then(data => setCompanies(data))
-      //   .catch(err => console.error(err));
+    const fetchCompanies = async () => {
+      try {
+        // ✅ 요청 파라미터 (임시값: 실제로는 location 페이지/estimate 페이지에서 받아와야 함)
+        const params = new URLSearchParams({
+          si: "서울시",
+          gu: "동작구",
+          dong: "상도동",
+          cat: "MOB", // 카테고리: MOB, COM, APP, DEV
+          radiusMeters: 2000, // 최대 반경
+        });
 
-      // --- 임시 더미 데이터 (백엔드 붙기 전까지) ---
-      setCompanies([
-        { id: 1, name: "경성테크", rating: 4.8, done: 355, reviews: 59 },
-        { id: 2, name: "에이스리페어", rating: 4.5, done: 280, reviews: 41 },
-        { id: 3, name: "스마트수리센터", rating: 4.7, done: 300, reviews: 52 },
-      ]);
-    }, []);
+        const res = await fetch("/api/matching?radiusMeters=2000")
+
+
+        if (!res.ok) throw new Error("API 요청 실패");
+
+        const data = await res.json();
+        setCompanies(data);
+      } catch (err) {
+        console.error("업체 목록 불러오기 실패:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCompanies();
+  }, []);
+
+  if (loading) return <p>업체 불러오는 중...</p>;
 
   return (
     <S.Container>
@@ -66,10 +82,10 @@ function Match() {
           onClick={() => navigate("/request")}
         >
           <S.RankBadge>추천순위 {idx + 1}위</S.RankBadge>
-          <S.CompanyImage src={c.imageUrl || sampleImg} alt={c.name} />
-          <S.CompanyName>{c.name}</S.CompanyName>
+          <S.CompanyImage src={sampleImg} alt={c.bizesNm} />
+          <S.CompanyName>{c.bizesNm}</S.CompanyName>
           <S.Rating>
-            <S.StarIcon>★</S.StarIcon> ({c.rating})
+            <S.StarIcon>★</S.StarIcon> ({c.indsScls})
           </S.Rating>
           <S.CompanyStats>
             <span>
