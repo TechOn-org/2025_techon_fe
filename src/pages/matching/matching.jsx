@@ -48,7 +48,11 @@ function Match() {
       {/* 업체 카드 리스트 */}
       <S.CardList>
       {companies.map((c, idx) => (
-        <S.CompanyCard key={c.id} className="matching_card">
+        <S.CompanyCard
+          key={c.id}
+          className="matching_card"
+          onClick={() => navigate("/request")}
+        >
           <S.RankBadge>추천순위 {idx + 1}위</S.RankBadge>
           <S.CompanyImage src={c.imageUrl || sampleImg} alt={c.name} />
           <S.CompanyName>{c.name}</S.CompanyName>

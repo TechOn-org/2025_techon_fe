@@ -83,8 +83,8 @@ export const InfoSubText = styled.div`
 export const InfoText = styled.p`
   margin-top: 24px;
   font-size: 16px;
-  font-weight: bold;
-  color: #00000; 
+  text-align: center;
+  color: #CCCCCC;
 `;
 
 
