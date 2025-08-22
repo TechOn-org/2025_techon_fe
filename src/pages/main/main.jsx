@@ -43,18 +43,7 @@ export default function MainPage() {
   return (
     <S.Wrap>
       {/* ===== Header ===== */}
-      <S.Header>
-      <S.RowBetween>
-        <S.Logo src={Logo} alt="Techon 로고" />
-
-        <LocationBtn />
-
-        <S.BellBtn aria-label="알림">
-          <S.BellIcon src={alarm} alt="알림" />
-        </S.BellBtn>
-      </S.RowBetween>
-    </S.Header>
-
+      <Header />
       <S.Content>
         {/* ===== 결제 알림 배너 ===== */}
         <S.HeroCard>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import * as S from "./styled";
 import { useLocation, useNavigate } from "react-router-dom";
+import LocationBtn from "../../location/LocationBtn";
 
 export const Header = () => {
   
@@ -13,11 +14,7 @@ export const Header = () => {
     <S.Header>
           <S.RowBetween>
             <S.Logo src={Logo} alt="Techon 로고" />
-            <S.LocationBtn >
-              <S.GpsIcon src={gps} alt="gps" />
-              <S.Location>지역</S.Location>
-            </S.LocationBtn>
-    
+            <LocationBtn />
             <S.BellBtn aria-label="알림">
               <S.BellIcon src={alarm} alt="알림" />
             </S.BellBtn>
