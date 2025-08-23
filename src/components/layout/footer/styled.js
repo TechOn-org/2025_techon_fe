@@ -22,7 +22,7 @@ export const BottomNav = styled.nav`
   z-index: 100;
 
   width: 100%;
-  max-width: 452px;                /* 본문과 동일 너비 */
+  max-width: 412px;                /* 본문과 동일 너비 */
   box-sizing: border-box;          /* 패딩 포함 폭 계산 */
 
   background: ${color.bg};

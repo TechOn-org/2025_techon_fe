@@ -60,13 +60,13 @@ function MarketPage() {
       {/* 상품 리스트 */}
         <S.Grid>
           {PRODUCTS.map((item) => (
-            <S.Card key={item.id}>
-              {/* 이미지만 카드 안에 */}
+            <S.Card 
+              key={item.id} 
+              onClick={() => navigate(`/marketdetail${item.id}`)}
+            >
               <div className="img-wrap">
                 <img src={item.img} alt={item.name} />
               </div>
-
-              {/* 텍스트는 카드 밖에 */}
               <div className="text-wrap">
                 <p className="name">{item.name}</p>
                 <p className="price">{item.price.toLocaleString()}원</p>
@@ -74,6 +74,7 @@ function MarketPage() {
             </S.Card>
           ))}
         </S.Grid>
+
 
 
       <Footer tab={tab} setTab={setTab} />
