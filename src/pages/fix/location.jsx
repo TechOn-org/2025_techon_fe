@@ -8,39 +8,16 @@ function LocationPage() {
   const navigate = useNavigate();
   const [location, setLocation] = useState("");
 
-  const handleNext = async () => {
+  const handleNext = () => {
     if (!location) {
       alert("지역을 입력해주세요!");
       return;
     }
 
-    const payload = {
-      location,
-    };
+    console.log("입력한 지역:", location); // 👉 지금은 로컬에서만 확인
 
-    try {
-      const response = await fetch("http://localhost:8080/api/repairs/location", {
-        // 👉 실제 서버 API 주소로 교체
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        throw new Error("서버 전송 실패");
-      }
-
-      const result = await response.json();
-      console.log("서버 응답:", result);
-
-      // 성공 시 검색 페이지로 이동
-      navigate("/search");
-    } catch (error) {
-      console.error("에러 발생:", error);
-      alert("서버 통신 중 문제가 발생했습니다.");
-    }
+    // ✅ 서버 전송 없이 바로 다음 페이지로 이동
+    navigate("/search", { state: { location } });
   };
 
   return (
@@ -82,7 +59,7 @@ function LocationPage() {
           title="다음"
           backgroundColor="#2665FE"
           color="#fff"
-          onClick={handleNext} // ✅ 서버 전송 후 이동
+          onClick={handleNext}
         />
       </S.Footer>
     </S.Container>

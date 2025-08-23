@@ -14,39 +14,26 @@ function SelectPage() {
     { id: 3, img: "/images/select_game.svg", label: "주변기기/기타" },
   ];
 
-  // 서버 전송 함수
-  const handleNext = async () => {
-    if (selected === null) {
-      alert("제품을 선택해주세요!");
-      return;
-    }
+  const handleNext = () => {
+  if (selected === null) {
+    alert("제품을 선택해주세요!");
+    return;
+  }
 
-    const selectedCard = cards.find((card) => card.id === selected);
+  const selectedCard = cards.find((card) => card.id === selected);
 
-    try {
-      const response = await fetch("http://localhost:8080/api/cards", {
-        // 👉 실제 백엔드 주소/엔드포인트로 교체하세요
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(selectedCard),
-      });
-
-      if (!response.ok) {
-        throw new Error("서버 전송 실패");
-      }
-
-      const result = await response.json();
-      console.log("서버 응답:", result);
-
-      // 성공 시 다음 페이지로 이동
-      navigate("/write");
-    } catch (error) {
-      console.error("에러 발생:", error);
-      alert("서버 통신 중 문제가 발생했습니다.");
-    }
+  // 카테고리 매핑
+  const categoryMap = {
+    0: "MOB",
+    1: "COM",
+    2: "APP",
+    3: "DEV",
   };
+
+  // 선택한 카테고리를 state로 넘김
+  navigate("/write", { state: { category: categoryMap[selectedCard.id] } });
+};
+
 
   return (
     <S.Container>

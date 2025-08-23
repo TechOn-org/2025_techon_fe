@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import TextInput from "../../components/common/inputs/TextInput";
 import Button from "../../components/common/buttons/PostButton";
 import * as S from "./styled";
+import axios from "axios";
 
 function WritePage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { category } = location.state || {}; // ✅ SelectPage에서 받은 category
 
-  // 입력값 상태 관리
   const [modelName, setModelName] = useState("");
   const [issue, setIssue] = useState("");
 
-  // 서버 전송 함수
   const handleNext = async () => {
     if (!modelName || !issue) {
       alert("모델명과 증상을 모두 입력해주세요!");
@@ -19,58 +20,38 @@ function WritePage() {
     }
 
     const payload = {
+      category,
       modelName,
-      issue,
+      text: issue, // 서버 요구사항에 맞게 필드명 text
     };
 
     try {
-      const response = await fetch("http://localhost:8080/api/repairs", {
-        // 👉 실제 백엔드 엔드포인트로 교체
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      const response = await axios.post("/api/estimation", payload);
 
-      if (!response.ok) {
-        throw new Error("서버 전송 실패");
-      }
+      console.log("서버 응답:", response.data);
 
-      const result = await response.json();
-      console.log("서버 응답:", result);
-
-      // 성공 시 다음 페이지로 이동
-      navigate("/location");
+      // 성공 시 다음 페이지 이동 (진단 결과도 함께 넘길 수 있음)
+      navigate("/location", { state: { estimation: response.data } });
     } catch (error) {
-      console.error("에러 발생:", error);
-      alert("서버 통신 중 문제가 발생했습니다.");
+      console.error("에러 발생:", error.response || error.message);
+      alert(error.response?.data?.message || "서버 통신 중 문제가 발생했습니다.");
     }
   };
 
   return (
     <S.Container>
-      {/* 헤더 */}
       <S.Header>
         <S.BackButton onClick={() => navigate(-1)}>
-          <img
-            src="/images/backbtn.svg"
-            alt="logo"
-            style={{ width: "20px", height: "auto" }}
-          />
+          <img src="/images/backbtn.svg" alt="logo" style={{ width: "20px" }} />
         </S.BackButton>
-        <S.StepText>
-          <span className="step">2/3</span>
-        </S.StepText>
+        <S.StepText><span className="step">2/3</span></S.StepText>
       </S.Header>
 
-      {/* 질문 */}
       <S.Question>
         수리할 제품 <span className="highlight">모델명</span>과 <br />
         어떤 <span className="highlight">증상</span>이 나타나는지 적어주세요!
       </S.Question>
 
-      {/* 모델명 입력 */}
       <S.Title>
         <S.Heading>제품 모델명을 입력해주세요</S.Heading>
         <TextInput
@@ -81,7 +62,6 @@ function WritePage() {
         />
       </S.Title>
 
-      {/* 증상 입력 */}
       <S.Contents>
         <S.Heading>제품에서 어떤 증상이 나타나는지 입력해주세요</S.Heading>
         <TextInput
@@ -92,14 +72,13 @@ function WritePage() {
         />
       </S.Contents>
 
-      {/* 다음 버튼 */}
       <S.Footer>
         <Button
           height="48px"
           title="다음"
           backgroundColor="#2665FE"
           color="#fff"
-          onClick={handleNext} // ✅ 서버 전송 후 이동
+          onClick={handleNext}
         />
       </S.Footer>
     </S.Container>
