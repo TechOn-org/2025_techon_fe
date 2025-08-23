@@ -11,8 +11,8 @@ const MarketDetail4 = () => {
 
   // 더미 데이터 (추후 API 연동 가능)
   const product = {
-    name: "리튬폴리머배터리",
-    desc: "리튬폴리머배터리",
+    name: "리튬 폴리머 배터리",
+    desc: "리튬 폴리머 배터리",
     price: 11700,
     shipping: "무료",
     type: "새 제품",
