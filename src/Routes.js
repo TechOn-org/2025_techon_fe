@@ -17,6 +17,7 @@ import RequestPage from "./pages/request/request.jsx";
 import HistoryPage from "./pages/detail/history.jsx";
 import MyPage from "./pages/detail/mypage.jsx";
 import MarketPage from "./pages/detail/market.jsx";
+import MarketDetailPage from "./pages/market_detail/marcket_detail.jsx";
 
 export default function AppRouter() {
   return (
@@ -37,6 +38,7 @@ export default function AppRouter() {
       <Route path="/mypage" element={<MyPage />} />
       <Route path="/market" element={<MarketPage />} />
       <Route path="/match2" element={<MatchAPI />} />
+      <Route path="/marketdetail" element={<MarketDetailPage />} />
     </Routes>
   );
 }
