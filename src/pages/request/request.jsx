@@ -23,12 +23,15 @@ const Request = () => {
     const { state } = useLocation();
     const [isOpen, setIsOpen] = useState(true);
 
-    // 업체 정보
-    const company = BUILDINGS.find((b) => b.name === state?.name);
 
-    // 진단 데이터
+    const company = BUILDINGS.find((b) => b.name === state?.name);
     const estimation = state?.estimation;
     const modelName = state?.modelName;
+
+    // ✅ 주소 받아오기
+    const si = state?.si || "";
+    const gu = state?.gu || "";
+    const dong = state?.dong || "";
 
     if (!company || !estimation) {
     return (
@@ -72,7 +75,7 @@ const Request = () => {
 
         {/* 별점 + 주소 */}
         <S.SubInfo>
-          ★ <span className="score">({state.rating}) 서울시 동작구 상도동</span>
+          ★ <span className="score">({state.rating}) {si} {gu} {dong}</span>
         </S.SubInfo>
 
         {/* 소개 문구 */}
@@ -136,7 +139,7 @@ const Request = () => {
 
             <S.EstimateRow>
             <S.EstimateLabel>위치</S.EstimateLabel>
-            <S.EstimateValue>서울시 동작구 상도동</S.EstimateValue>
+            <S.EstimateValue>{si} {gu} {dong}</S.EstimateValue>
             </S.EstimateRow>
 
             <S.EstimateRow>

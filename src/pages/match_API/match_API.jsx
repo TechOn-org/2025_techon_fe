@@ -6,6 +6,16 @@ import "../matching/matching.css";
 const match = "/images/match.svg";
 const info = "/images/info.svg";
 
+// ✅ 업체 이미지와 이름 매핑
+const BUILDINGS = [
+  { img: "/images/building_1.svg", name: "사운드리서치" },
+  { img: "/images/building_2.svg", name: "아이폰에이에스센터장승배기점" },
+  { img: "/images/building_3.svg", name: "현재정보통신" },
+  { img: "/images/building_4.svg", name: "경성테크" },
+  { img: "/images/building_5.svg", name: "동작홈마스터" },
+];
+
+
 // ✅ 난수 함수
 const getRandom = (min, max) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
@@ -50,9 +60,10 @@ function MatchAPI() {
 
         // 추천 업체 3개만 가져오기
         const rankedCompanies = data.slice(0, 3).map((c, idx) => {
+            const building = BUILDINGS[idx]; // 순서대로 이름/이미지 사용
           if (idx === 0) {
             return {
-              ...c,
+              ...building,
               rating: getRandomFloat(4.3, 4.8),
               done: getRandom(300, 400),
               reviews: getRandom(38, 60),
@@ -60,14 +71,14 @@ function MatchAPI() {
           }
           if (idx === 1) {
             return {
-              ...c,
+              ...building,
               rating: getRandomFloat(4.0, 4.3),
               done: getRandom(150, 250),
               reviews: getRandom(24, 39),
             };
           }
           return {
-            ...c,
+            ...building,
             rating: getRandomFloat(3.8, 4.0),
             done: getRandom(50, 150),
             reviews: getRandom(8, 24),
@@ -86,12 +97,14 @@ function MatchAPI() {
   }, [si, gu, dong, estimation]);
 
 
-  return (
+return (
     <S.Container>
+      {/* 헤더 */}
       <S.Header>
         <S.BackButton onClick={() => navigate("/estimate")}>←</S.BackButton>
       </S.Header>
 
+      {/* 아이콘 + 텍스트 */}
       <S.MatchBox>
         <img src={match} alt="매칭 아이콘" />
         <S.MatchTextBox>
@@ -100,6 +113,7 @@ function MatchAPI() {
         </S.MatchTextBox>
       </S.MatchBox>
 
+      {/* 안내문 */}
       <S.AgentText>
         맞춤 업체 모아보기 <S.BlueText>{companies.length}</S.BlueText>
       </S.AgentText>
@@ -109,16 +123,29 @@ function MatchAPI() {
         <S.InfoSubText>원하는 업체가 있으면 상세보기를 눌러주세요</S.InfoSubText>
       </S.InfoBox>
 
+      {/* 업체 카드 리스트 */}
       <S.CardList>
         {companies.map((c, idx) => (
           <S.CompanyCard
-            key={c.bizesId}
+            key={idx}
             className="matching_card"
-            onClick={() => navigate("/request")}
-          >
+            onClick={() =>
+            navigate("/request", {
+            state: {
+                ...c,          // 업체 정보 (name, img, rating 등)
+                rank: idx + 1, // 추천순위
+                estimation,
+                modelName,
+                si,            // ✅ 주소 같이 전달
+                gu,
+                dong,
+            },
+            })
+        }
+        >
             <S.RankBadge>추천순위 {idx + 1}위</S.RankBadge>
-            <S.CompanyName>{c.bizesNm}</S.CompanyName>
-            <S.CompanyAddr>{c.rdnmAdr}</S.CompanyAddr>
+            <S.CompanyImage src={c.img} alt={c.name} />
+            <S.CompanyName>{c.name}</S.CompanyName>
             <S.Rating>
               <S.StarIcon>★</S.StarIcon> ({c.rating})
             </S.Rating>
@@ -135,6 +162,7 @@ function MatchAPI() {
       </S.CardList>
 
       <S.InfoText>원하는 업체가 아니신가요?</S.InfoText>
+
       <S.Button onClick={() => navigate("/select")}>
         새로운 견적 받기
       </S.Button>
