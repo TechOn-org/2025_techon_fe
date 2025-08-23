@@ -41,12 +41,12 @@ export const DiagnoseTextBox = styled.div`
 `;
 
 export const SubTitle = styled.span`
-  font-size: 12px;
+  font-size: 14px;
   color: #888;
 `;
 
 export const MainTitle = styled.h2`
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   margin: 0;
   color: #000;

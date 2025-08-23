@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledTextarea = styled.textarea`
-    display: flex;
-    width: 353px;
+    display: block;
+    width: 100%; 
     padding: 16px;
     justify-content: space-between;
     align-items: center;
@@ -21,6 +21,11 @@ const StyledTextarea = styled.textarea`
     &::-webkit-scrollbar {
         display: none; /* 크롬, 사파리, 엣지 */
     }
+         &:focus {
+    outline: none;       /* ✅ 기본 까만 테두리 제거 */
+    border-color: #2665fe; /* 선택 시 테두리 색만 변경 (옵션) */
+    box-shadow: 0 0 0 3px rgba(38, 101, 254, 0.2); /* 살짝 강조 효과 (옵션) */
+  }
 `;
 
 function TextInput(props) {
