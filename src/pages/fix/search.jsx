@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import * as S from "./styled";
 
@@ -17,11 +17,11 @@ const ripple = keyframes`
 
 const RippleWrapper = styled.div`
   position: relative;
-  width: 32vw;   /* 화면 가로의 30% */
-  height: 32vw;  /* 정사각형 유지 */
+  width: 32vw;
+  height: 32vw;
   max-width: 150px;
   max-height: 150px;
-  margin-top: -20vh; /* 화면 높이 기준 위로 이동 */
+  margin-top: -20vh;
 `;
 
 const Circle = styled.div`
@@ -37,17 +37,18 @@ const Circle = styled.div`
   animation-delay: ${(props) => props.delay}s;
 `;
 
-
 function SearchPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { estimation, modelName, location: userLocation } = location.state || {};
 
-  // 5초 뒤 자동 이동
+  // 5초 뒤 자동 이동 (state 같이 전달)
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate("/estimate"); // 원하는 경로로 이동
+      navigate("/estimate", { state: { estimation, modelName, location: userLocation } });
     }, 5000);
     return () => clearTimeout(timer);
-  }, [navigate]);
+  }, [navigate, estimation, modelName, userLocation]);
 
   return (
     <S.Container>

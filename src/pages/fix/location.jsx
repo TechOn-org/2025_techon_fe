@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import TextInput from "../../components/common/inputs/TextInput";
+import { useNavigate, useLocation } from "react-router-dom";
 import Button from "../../components/common/buttons/PostButton";
 import * as S from "./styled";
 import SingleLineInput from "../../components/common/inputs/SingleLineInput";
 
-
 function LocationPage() {
   const navigate = useNavigate();
-  const [location, setLocation] = useState("");
+  const routerLocation = useLocation(); // ✅ 라우터에서 전달된 state
+  const { estimation, modelName } = routerLocation.state || {}; // WritePage → 전달받은 값
+
+  const [location, setLocation] = useState(""); // 사용자가 입력하는 지역 값
 
   const handleNext = () => {
     if (!location) {
@@ -16,10 +17,16 @@ function LocationPage() {
       return;
     }
 
-    console.log("입력한 지역:", location); // 👉 지금은 로컬에서만 확인
+    console.log("입력한 지역:", location);
 
-    // ✅ 서버 전송 없이 바로 다음 페이지로 이동
-    navigate("/search", { state: { location } });
+    // ✅ 다음 페이지로 estimation + modelName + location 모두 전달
+    navigate("/search", {
+      state: { 
+        estimation,
+        modelName,
+        location
+      },
+    });
   };
 
   return (
