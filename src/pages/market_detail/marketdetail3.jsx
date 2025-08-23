@@ -3,21 +3,21 @@ import { useNavigate } from "react-router-dom";
 import * as S from "./styled";
 
 
-const adoino = "/images/adoino.svg";
+const adoino = "/images/microbit.svg";
 const magnify = "/images/magnify.svg";
 
-const MarketDetail = () => {
+const MarketDetail3 = () => {
   const navigate = useNavigate();
 
   // 더미 데이터 (추후 API 연동 가능)
   const product = {
-    name: "ESP32 Wi-Fi & 블루투스 개발 보드",
-    desc: "ESP-32 아두이노 WIFI ESP8266",
-    price: 11700,
+    name: "마이크로비트 V2 ",
+    desc: "마이크로비트 V2",
+    price: 25000,
     shipping: "무료",
     type: "새 제품",
     point: 80,
-    img: "/images/adoino.png", // 실제 이미지 경로 넣으시면 됩니다
+    img: "/images/microbit.svg", // 실제 이미지 경로 넣으시면 됩니다
   };
 
   return (
@@ -73,4 +73,4 @@ const MarketDetail = () => {
   );
 };
 
-export default MarketDetail;
+export default MarketDetail3;
