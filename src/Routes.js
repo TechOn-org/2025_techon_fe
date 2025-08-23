@@ -42,9 +42,9 @@ export default function AppRouter() {
       <Route path="/market" element={<MarketPage />} />
       <Route path="/match2" element={<MatchAPI />} />
       <Route path="/marketdetail1" element={<MarketDetail1 />} />
-      <Route path="/marketdetail2" element={<MarketDetail2 />} />
+      <Route path="/marketdetail4" element={<MarketDetail2 />} />
       <Route path="/marketdetail3" element={<MarketDetail3 />} />
-      <Route path="/marketdetail4" element={<MarketDetail4 />} />
+      <Route path="/marketdetail2" element={<MarketDetail4 />} />
     </Routes>
   );
 }

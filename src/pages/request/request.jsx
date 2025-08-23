@@ -3,37 +3,23 @@ import { useNavigate, useLocation } from "react-router-dom";
 import * as S from "./styled";
 import "./request.css";
 
-
-const sampleImg = "/images/sample_building.svg";
-const companyHeader = "/images/company-header.svg";
 const upIcon = "/images/up.svg";
 const downIcon = "/images/down.svg";
 
-// ✅ 업체 이미지와 이름 매핑
-const BUILDINGS = [
-  { img: "/images/building_1.svg", bg: "/images/background_1.svg", name: "사운드리서치" },
-  { img: "/images/building_2.svg", bg: "/images/background_2.svg", name: "아이폰에이에스센터장승배기점" },
-  { img: "/images/building_3.svg", bg: "/images/background_3.svg", name: "현재정보통신" },
-  { img: "/images/building_4.svg", bg: "/images/background_4.svg", name: "경성테크" },
-  { img: "/images/building_5.svg", bg: "/images/background_5.svg", name: "동작홈마스터" },
-];
-
 const Request = () => {
-    const navigate = useNavigate();
-    const { state } = useLocation();
-    const [isOpen, setIsOpen] = useState(true);
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const [isOpen, setIsOpen] = useState(true);
 
+  const estimation = state?.estimation;
+  const modelName = state?.modelName;
 
-    const company = BUILDINGS.find((b) => b.name === state?.name);
-    const estimation = state?.estimation;
-    const modelName = state?.modelName;
+  // ✅ 주소 받아오기
+  const si = state?.si || "";
+  const gu = state?.gu || "";
+  const dong = state?.dong || "";
 
-    // ✅ 주소 받아오기
-    const si = state?.si || "";
-    const gu = state?.gu || "";
-    const dong = state?.dong || "";
-
-    if (!company || !estimation) {
+  if (!state || !estimation) {
     return (
       <S.Container>
         <p>업체 정보 또는 진단 데이터가 없습니다.</p>
@@ -42,7 +28,7 @@ const Request = () => {
     );
   }
 
-   // 예상 결제 금액: 범위 평균
+  // 예상 결제 금액: 범위 평균
   const avgPrice = Math.round(
     (estimation.estimateMin + estimation.estimateMax) / 2
   );
@@ -56,21 +42,21 @@ const Request = () => {
 
   return (
     <S.Container>
-      {/* 상단 업체 이미지 (배경) */}
+      {/* 상단 업체 이미지 */}
       <S.HeaderWrapper>
-        <S.HeaderImage src={company.bg} alt="업체 대표 배경" />
+        <S.HeaderImage src={state.img} alt="업체 대표 배경" />
         <S.BackButton onClick={() => navigate("/match")}>←</S.BackButton>
       </S.HeaderWrapper>
 
       {/* 업체 프로필 */}
       <S.Header>
-        <S.ProfileImage src={company.img} alt={company.name} />
+        <S.ProfileImage src={state.img} alt={state.bizesNm} />
       </S.Header>
 
       <S.Body>
         <S.Badge>추천순위 {state.rank}위</S.Badge>
         <S.Title>
-          안녕하세요 <br /> <span>{company.name}</span>입니다.
+          안녕하세요 <br /> <span>{state.bizesNm}</span>입니다.
         </S.Title>
 
         {/* 별점 + 주소 */}
@@ -80,10 +66,9 @@ const Request = () => {
 
         {/* 소개 문구 */}
         <S.Description>
-            원하시는 조건으로 수리, 교체 <br/> 진행해드리겠습니다!
+          원하시는 조건으로 수리, 교체 <br /> 진행해드리겠습니다!
         </S.Description>
-        </S.Body>
-    
+      </S.Body>
 
       {/* 리뷰 */}
       <S.ReviewSection>
@@ -95,9 +80,10 @@ const Request = () => {
         <S.ReviewSlider>
           <S.ReviewCard className="review_card">
             <S.ReviewTitle>춤추는 개구리</S.ReviewTitle>
-            <S.ReviewScore>★ <span>5.0</span></S.ReviewScore> 
+            <S.ReviewScore>★ <span>5.0</span></S.ReviewScore>
             <S.ReviewContent>
-              전문가님이 정말 친절하시고, 수리도 30분만에 깔끔하게 끝났습니다. 예상 비용도 거의 똑같아서 믿음이 갔어요!
+              전문가님이 정말 친절하시고, 수리도 30분만에 깔끔하게 끝났습니다.
+              예상 비용도 거의 똑같아서 믿음이 갔어요!
             </S.ReviewContent>
           </S.ReviewCard>
 
@@ -119,54 +105,49 @@ const Request = () => {
         </S.ReviewSlider>
       </S.ReviewSection>
 
-
       {/* 견적 카드 */}
-    <S.EstimateCard className="review_card">
+      <S.EstimateCard className="review_card">
+        <S.CardHeader onClick={() => setIsOpen(!isOpen)}>
+          <span>내 선택 정보</span>
+          {isOpen ? <img src={upIcon} alt="up" /> : <img src={downIcon} alt="down" />}
+        </S.CardHeader>
 
-      {/* 카드 헤더 */}
-    <S.CardHeader onClick={() => setIsOpen(!isOpen)}>
-      <span>내 선택 정보</span>
-      {isOpen ? <img src={upIcon} alt="up" /> : <img src={downIcon} alt="down" />}
-    </S.CardHeader>
-
-    {/* 카드 내용 (토글) */}
-      {isOpen && (
-        <S.EstimateGrid>
+        {isOpen && (
+          <S.EstimateGrid>
             <S.EstimateRow>
-            <S.EstimateLabel>수리 유형</S.EstimateLabel>
-            <S.EstimateValue>{categoryMap[estimation.category]}</S.EstimateValue>
+              <S.EstimateLabel>수리 유형</S.EstimateLabel>
+              <S.EstimateValue>{categoryMap[estimation.category]}</S.EstimateValue>
             </S.EstimateRow>
 
             <S.EstimateRow>
-            <S.EstimateLabel>위치</S.EstimateLabel>
-            <S.EstimateValue>{si} {gu} {dong}</S.EstimateValue>
+              <S.EstimateLabel>위치</S.EstimateLabel>
+              <S.EstimateValue>{si} {gu} {dong}</S.EstimateValue>
             </S.EstimateRow>
 
             <S.EstimateRow>
-            <S.EstimateLabel>진단 결과</S.EstimateLabel>
-            <S.EstimateValue>{estimation.diagnosis}</S.EstimateValue>
+              <S.EstimateLabel>진단 결과</S.EstimateLabel>
+              <S.EstimateValue>{estimation.diagnosis}</S.EstimateValue>
             </S.EstimateRow>
 
             <S.EstimateRow>
-            <S.EstimateLabel>교체에 필요한 부품</S.EstimateLabel>
-            <S.EstimateValue>{estimation.requiredParts.join(", ")}</S.EstimateValue>
+              <S.EstimateLabel>교체에 필요한 부품</S.EstimateLabel>
+              <S.EstimateValue>{estimation.requiredParts.join(", ")}</S.EstimateValue>
             </S.EstimateRow>
 
             <S.EstimateRow style={{ gridColumn: "1 / span 2" }}>
-            <S.EstimateLabel>예상 결제 금액</S.EstimateLabel>
-            <S.EstimatePrice>{avgPrice.toLocaleString()}원</S.EstimatePrice>
+              <S.EstimateLabel>예상 결제 금액</S.EstimateLabel>
+              <S.EstimatePrice>{avgPrice.toLocaleString()}원</S.EstimatePrice>
             </S.EstimateRow>
           </S.EstimateGrid>
         )}
-    </S.EstimateCard>
+      </S.EstimateCard>
 
-    <S.NoticeText>예약 후 확인은 영업일 기준 1~2일 소요됩니다.</S.NoticeText>
+      <S.NoticeText>예약 후 확인은 영업일 기준 1~2일 소요됩니다.</S.NoticeText>
 
-    {/* 고정 버튼 */}
-    <S.FixedButton onClick={() => navigate("/complete")}>
-      업체에 견적서 보내기
-    </S.FixedButton>
-
+      {/* 고정 버튼 */}
+      <S.FixedButton onClick={() => navigate("/complete")}>
+        업체에 견적서 보내기
+      </S.FixedButton>
     </S.Container>
   );
 };

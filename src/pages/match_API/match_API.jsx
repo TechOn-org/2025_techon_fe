@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as S from "./styled";
 import "../matching/matching.css";
@@ -6,21 +6,27 @@ import "../matching/matching.css";
 const match = "/images/match.svg";
 const info = "/images/info.svg";
 
-// ✅ 업체 이미지와 이름 매핑
 const BUILDINGS = [
-  { img: "/images/building_1.svg", name: "사운드리서치" },
-  { img: "/images/building_2.svg", name: "아이폰에이에스센터장승배기점" },
-  { img: "/images/building_3.svg", name: "현재정보통신" },
-  { img: "/images/building_4.svg", name: "경성테크" },
-  { img: "/images/building_5.svg", name: "동작홈마스터" },
+  { img: "/images/building_1.svg"},
+  { img: "/images/building_2.svg"},
+  { img: "/images/building_3.svg"},
+  { img: "/images/building_4.svg"},
+  { img: "/images/building_5.svg"},
 ];
 
+// ✅ 배열 셔플 함수 (Fisher-Yates)
+const shuffleArray = (array) => {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+};
 
-// ✅ 난수 함수
+// 난수 함수들
 const getRandom = (min, max) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
-
-// ✅ 소수점 한 자리 난수 (별점용)
 const getRandomFloat = (min, max) =>
   (Math.random() * (max - min) + min).toFixed(1);
 
@@ -34,6 +40,10 @@ function MatchAPI() {
   const [companies, setCompanies] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // ✅ 최초에만 셔플된 이미지 세트 고정
+  const shuffledBuildingsRef = useRef(shuffleArray(BUILDINGS).slice(0, 3));
+
+  // ✅ 업체 데이터 불러오기
   useEffect(() => {
     const fetchCompanies = async () => {
       try {
@@ -43,9 +53,12 @@ function MatchAPI() {
           return;
         }
 
-        // 프록시(/api) 기반 요청
         const res = await fetch(
-          `/api/matching/nearby?si=${encodeURIComponent(si)}&gu=${encodeURIComponent(gu)}&dong=${encodeURIComponent(dong)}&cat=${estimation?.category || "MOB"}&radiusMeters=2000`,
+          `/api/matching/nearby?si=${encodeURIComponent(
+            si
+          )}&gu=${encodeURIComponent(gu)}&dong=${encodeURIComponent(
+            dong
+          )}&cat=${estimation?.category || "MOB"}&radiusMeters=2000`,
           {
             headers: {
               "ngrok-skip-browser-warning": "true",
@@ -58,12 +71,13 @@ function MatchAPI() {
         const data = await res.json();
         console.log("업체 데이터:", data);
 
-        // 추천 업체 3개만 가져오기
+        // ✅ 최초 셔플된 이미지 세트 고정 사용
         const rankedCompanies = data.slice(0, 3).map((c, idx) => {
-            const building = BUILDINGS[idx]; // 순서대로 이름/이미지 사용
+          const building = shuffledBuildingsRef.current[idx]; // 고정된 이미지 사용
           if (idx === 0) {
             return {
-              ...building,
+              ...c,
+              img: building.img,
               rating: getRandomFloat(4.3, 4.8),
               done: getRandom(300, 400),
               reviews: getRandom(38, 60),
@@ -71,14 +85,16 @@ function MatchAPI() {
           }
           if (idx === 1) {
             return {
-              ...building,
+              ...c,
+              img: building.img,
               rating: getRandomFloat(4.0, 4.3),
               done: getRandom(150, 250),
               reviews: getRandom(24, 39),
             };
           }
           return {
-            ...building,
+            ...c,
+            img: building.img,
             rating: getRandomFloat(3.8, 4.0),
             done: getRandom(50, 150),
             reviews: getRandom(8, 24),
@@ -93,18 +109,19 @@ function MatchAPI() {
       }
     };
 
+    
     fetchCompanies();
   }, [si, gu, dong, estimation]);
 
 
-return (
+  return (
     <S.Container>
       {/* 헤더 */}
       <S.Header>
         <S.BackButton onClick={() => navigate("/estimate")}>←</S.BackButton>
       </S.Header>
 
-      {/* 아이콘 + 텍스트 */}
+      {/* 매칭 아이콘 */}
       <S.MatchBox>
         <img src={match} alt="매칭 아이콘" />
         <S.MatchTextBox>
@@ -113,14 +130,17 @@ return (
         </S.MatchTextBox>
       </S.MatchBox>
 
-      {/* 안내문 */}
+      {/* 업체 개수 */}
       <S.AgentText>
         맞춤 업체 모아보기 <S.BlueText>{companies.length}</S.BlueText>
       </S.AgentText>
 
+      {/* 안내 박스 */}
       <S.InfoBox>
         <S.InfoIcon src={info} alt="info icon" />
-        <S.InfoSubText>원하는 업체가 있으면 상세보기를 눌러주세요</S.InfoSubText>
+        <S.InfoSubText>
+          원하는 업체가 있으면 상세보기를 눌러주세요
+        </S.InfoSubText>
       </S.InfoBox>
 
       {/* 업체 카드 리스트 */}
@@ -130,22 +150,25 @@ return (
             key={idx}
             className="matching_card"
             onClick={() =>
-            navigate("/request", {
-            state: {
-                ...c,          // 업체 정보 (name, img, rating 등)
-                rank: idx + 1, // 추천순위
-                estimation,
-                modelName,
-                si,            // ✅ 주소 같이 전달
-                gu,
-                dong,
-            },
-            })
-        }
-        >
+              navigate("/request", {
+                state: {
+                  ...c,
+                  name: c.bizesNm,
+                  rank: idx + 1,
+                  estimation,
+                  modelName,
+                  si,
+                  gu,
+                  dong,
+                },
+              })
+            }
+          >
+
             <S.RankBadge>추천순위 {idx + 1}위</S.RankBadge>
-            <S.CompanyImage src={c.img} alt={c.name} />
-            <S.CompanyName>{c.name}</S.CompanyName>
+            <S.CompanyImage src={c.img} alt={`업체${idx + 1}`} />
+            <S.CompanyName>{c.bizesNm}</S.CompanyName>
+            <S.CompanyAddr>{c.rdnmAdr}</S.CompanyAddr>
             <S.Rating>
               <S.StarIcon>★</S.StarIcon> ({c.rating})
             </S.Rating>
@@ -161,8 +184,8 @@ return (
         ))}
       </S.CardList>
 
+      {/* 버튼 */}
       <S.InfoText>원하는 업체가 아니신가요?</S.InfoText>
-
       <S.Button onClick={() => navigate("/select")}>
         새로운 견적 받기
       </S.Button>
