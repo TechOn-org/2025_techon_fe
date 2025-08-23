@@ -4,11 +4,15 @@ import "./style.css";
 
 export default function Splash() {
   const [phase, setPhase] = useState("text"); // text -> fading -> logo
+  const navigate = useNavigate();
+
   useEffect(() => {
     const TEXT_HOLD = 1500, FADE = 700, GAP = 500;
     const t1 = setTimeout(() => setPhase("fading"), TEXT_HOLD);
     const t2 = setTimeout(() => setPhase("logo"), TEXT_HOLD + FADE + GAP);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
+    const t3 = setTimeout(() => navigate("/login"), TEXT_HOLD + FADE + GAP + 2000);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3);};
+
   }, []);
 
   return (
