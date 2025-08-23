@@ -12,22 +12,29 @@ function LocationPage() {
   const [location, setLocation] = useState(""); // 사용자가 입력하는 지역 값
 
   const handleNext = () => {
-    if (!location) {
-      alert("지역을 입력해주세요!");
-      return;
-    }
+  if (!location) {
+    alert("지역을 입력해주세요!");
+    return;
+  }
 
-    console.log("입력한 지역:", location);
+  const parts = location.trim().split(" ");
+  if (parts.length < 3) {
+    alert("주소 형식이 잘못되었습니다. (시 구 동 순서로 입력해주세요)");
+    return;
+  }
 
-    // ✅ 다음 페이지로 estimation + modelName + location 모두 전달
-    navigate("/search", {
-      state: { 
-        estimation,
-        modelName,
-        location
-      },
-    });
-  };
+  const [si, gu, dong] = parts;
+
+  navigate("/search", {
+    state: { 
+      estimation,
+      modelName,
+      si,
+      gu,
+      dong
+    },
+  });
+};
 
   return (
     <S.Container>

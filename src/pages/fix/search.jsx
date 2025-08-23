@@ -40,15 +40,19 @@ const Circle = styled.div`
 function SearchPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { estimation, modelName, location: userLocation } = location.state || {};
+  const { estimation, modelName, si, gu, dong } = location.state || {};
 
   // 5초 뒤 자동 이동 (state 같이 전달)
   useEffect(() => {
-    const timer = setTimeout(() => {
-      navigate("/estimate", { state: { estimation, modelName, location: userLocation } });
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, [navigate, estimation, modelName, userLocation]);
+  const timer = setTimeout(() => {
+    navigate("/estimate", { 
+      state: { estimation, modelName, si, gu, dong } 
+    });
+  }, 5000);
+
+  return () => clearTimeout(timer);
+}, [navigate, estimation, modelName, si, gu, dong]);
+
 
   return (
     <S.Container>
