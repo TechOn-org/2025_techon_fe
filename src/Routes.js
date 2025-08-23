@@ -9,6 +9,7 @@ import LocationPage from "./pages/fix/location.jsx";
 import SearchPage from "./pages/fix/search.jsx";
 import EstimatePage from "./pages/estimate/estimate.jsx";
 import MatchPage from "./pages/matching/matching.jsx";
+import MatchAPI from "./pages/match_API/match_API.jsx";
 import SplashPage from "./pages/splash/splash.jsx";
 import Login from "./pages/login/login.jsx";
 import CompletePage from "./pages/complete/complete.jsx";
@@ -35,6 +36,7 @@ export default function AppRouter() {
       <Route path="/history" element={<HistoryPage />} />
       <Route path="/mypage" element={<MyPage />} />
       <Route path="/market" element={<MarketPage />} />
+      <Route path="/match2" element={<MatchAPI />} />
     </Routes>
   );
 }

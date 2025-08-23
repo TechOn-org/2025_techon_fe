@@ -8,6 +8,7 @@ const diagnose = "/images/diagnose.svg";
 function Estimate() {
   const navigate = useNavigate();
   const location = useLocation();
+  
 
   const categoryMap = {
     MOB: "휴대폰/태블릿",
@@ -19,6 +20,9 @@ function Estimate() {
   // WritePage에서 넘긴 estimation 데이터
   const estimation = location.state?.estimation;
   const modelName = location.state?.modelName;
+  const si = location.state?.si;
+  const gu = location.state?.gu;
+  const dong = location.state?.dong;
 
 
   if (!estimation) return <p>로딩 중...</p>;
@@ -85,7 +89,9 @@ function Estimate() {
         </S.PriceBox>
       </S.Section>
 
-      <S.Button onClick={() => navigate("/match", { state: { estimation, modelName } })}>
+      <S.Button onClick={() => navigate("/match2", {
+        state: { estimation, modelName, si, gu, dong }
+      })}>
         전문가 매칭하기
       </S.Button>
     </S.Container>

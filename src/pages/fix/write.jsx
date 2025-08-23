@@ -32,7 +32,7 @@ function WritePage() {
       console.log("서버 응답:", response.data);
 
       // ✅ Estimate 페이지로 응답 데이터 전달
-      navigate("/estimate", { 
+      navigate("/location", { 
         state: { 
           estimation: response.data, 
           modelName // 내가 입력한 값 같이 전달

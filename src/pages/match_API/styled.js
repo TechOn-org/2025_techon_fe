@@ -47,6 +47,12 @@ export const AgentText = styled.p`
   color: #000000;
 `;
 
+export const CompanyAddr = styled.p`
+  font-size: 14px;
+  color: #666;
+  margin: 4px 0 8px;
+`;
+
 export const BlueText = styled.span`
   color: #2665FE;
   font-weight: bold;

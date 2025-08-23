@@ -36,9 +36,20 @@ const UPCYCLE_BANNERS = [
   { id: 4, title: "업사이클링\n제품 추천드립니다!", img: "/images/upcycle.png", bg: "#8b5cf6" }, // 퍼플
 ];
 
+
 export default function MainPage() {
   const [tab, setTab] = useState("main");
   const navigate = useNavigate();
+
+  const [nickname, setNickname] = useState("");
+
+
+    useEffect(() => {
+        const savedNickname = localStorage.getItem("nickname");
+        if (savedNickname) {
+          setNickname(savedNickname);
+        }
+      }, []);
 
   return (
     <S.Wrap>
@@ -48,7 +59,7 @@ export default function MainPage() {
         {/* ===== 결제 알림 배너 ===== */}
         <S.HeroCard>
           <S.HeroText>
-            <S.Subtitle>김숭실님,</S.Subtitle>
+            <S.Subtitle>{nickname ? `${nickname}님,` : "회원님,"}</S.Subtitle>
             <S.Headline>
               총 <S.Primary>290,278원</S.Primary>
               <br />
