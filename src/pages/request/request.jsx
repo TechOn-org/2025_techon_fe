@@ -23,17 +23,33 @@ const Request = () => {
     const { state } = useLocation();
     const [isOpen, setIsOpen] = useState(true);
 
-    // 넘어온 업체 정보 매칭 (name으로 찾음)
+    // 업체 정보
     const company = BUILDINGS.find((b) => b.name === state?.name);
 
-    if (!company) {
-      return (
-        <S.Container>
-          <p>업체 정보가 없습니다.</p>
-          <S.BackButton onClick={() => navigate("/match")}>←</S.BackButton>
-        </S.Container>
-      );
-    }
+    // 진단 데이터
+    const estimation = state?.estimation;
+    const modelName = state?.modelName;
+
+    if (!company || !estimation) {
+    return (
+      <S.Container>
+        <p>업체 정보 또는 진단 데이터가 없습니다.</p>
+        <S.BackButton onClick={() => navigate("/match")}>←</S.BackButton>
+      </S.Container>
+    );
+  }
+
+   // 예상 결제 금액: 범위 평균
+  const avgPrice = Math.round(
+    (estimation.estimateMin + estimation.estimateMax) / 2
+  );
+
+  const categoryMap = {
+    MOB: "휴대폰/태블릿",
+    COM: "노트북/PC",
+    APP: "생활가전",
+    DEV: "주변기기/기타",
+  };
 
   return (
     <S.Container>
@@ -115,7 +131,7 @@ const Request = () => {
         <S.EstimateGrid>
             <S.EstimateRow>
             <S.EstimateLabel>수리 유형</S.EstimateLabel>
-            <S.EstimateValue>휴대폰/태블릿</S.EstimateValue>
+            <S.EstimateValue>{categoryMap[estimation.category]}</S.EstimateValue>
             </S.EstimateRow>
 
             <S.EstimateRow>
@@ -125,17 +141,17 @@ const Request = () => {
 
             <S.EstimateRow>
             <S.EstimateLabel>진단 결과</S.EstimateLabel>
-            <S.EstimateValue>액정 교체</S.EstimateValue>
+            <S.EstimateValue>{estimation.diagnosis}</S.EstimateValue>
             </S.EstimateRow>
 
             <S.EstimateRow>
             <S.EstimateLabel>교체에 필요한 부품</S.EstimateLabel>
-            <S.EstimateValue>액정 디스플레이</S.EstimateValue>
+            <S.EstimateValue>{estimation.requiredParts.join(", ")}</S.EstimateValue>
             </S.EstimateRow>
 
             <S.EstimateRow style={{ gridColumn: "1 / span 2" }}>
             <S.EstimateLabel>예상 결제 금액</S.EstimateLabel>
-            <S.EstimatePrice>330,000원</S.EstimatePrice>
+            <S.EstimatePrice>{avgPrice.toLocaleString()}원</S.EstimatePrice>
             </S.EstimateRow>
           </S.EstimateGrid>
         )}

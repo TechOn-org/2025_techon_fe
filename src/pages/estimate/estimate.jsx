@@ -85,7 +85,7 @@ function Estimate() {
         </S.PriceBox>
       </S.Section>
 
-      <S.Button onClick={() => navigate("/match")}>
+      <S.Button onClick={() => navigate("/match", { state: { estimation, modelName } })}>
         전문가 매칭하기
       </S.Button>
     </S.Container>
