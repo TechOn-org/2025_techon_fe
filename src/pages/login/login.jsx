@@ -47,44 +47,46 @@ export default function Login() {
   return (
     <S.Container>
       {/* 로고 영역 */}
-      <S.LogoContainer>
-        <img 
-          src="/images/logo_icon.svg" 
-          alt="logo" 
-          style={{ width: "109px", height: "auto" }} 
-        />
-      </S.LogoContainer>
+      <S.LoginContainer>
+        <S.LogoContainer>
+          <img 
+            src="/images/logo_icon.svg" 
+            alt="logo" 
+            style={{ width: "109px", height: "auto" }} 
+          />
+        </S.LogoContainer>
 
-      {/* 로그인 폼 */}
-      <S.FormGroup>
-        <label>아이디 입력</label>
-        <S.InputField
-          type="text"
-          placeholder="아이디를 입력해주세요."
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </S.FormGroup>
+        {/* 로그인 폼 */}
+        <S.FormGroup>
+          <label>아이디 입력</label>
+          <S.InputField
+            type="text"
+            placeholder="아이디를 입력해주세요."
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </S.FormGroup>
 
-      <S.FormGroup>
-        <label>비밀번호 입력</label>
-        <S.InputField
-          type="password"
-          placeholder="비밀번호를 입력해주세요."
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </S.FormGroup>
+        <S.FormGroup>
+          <label>비밀번호 입력</label>
+          <S.InputField
+            type="password"
+            placeholder="비밀번호를 입력해주세요."
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </S.FormGroup>
 
-      {/* 버튼 영역 */}
-      <S.ButtonRow>
-        <S.SignInButton onClick={handleLogin}>
-          로그인
-        </S.SignInButton>
-        <S.SignUpButton onClick={() => navigate("/signup")}>
-          회원가입
-        </S.SignUpButton>
-      </S.ButtonRow>
+        {/* 버튼 영역 */}
+        <S.ButtonRow>
+          <S.SignInButton onClick={handleLogin}>
+            로그인
+          </S.SignInButton>
+          <S.SignUpButton onClick={() => navigate("/signup")}>
+            회원가입
+          </S.SignUpButton>
+        </S.ButtonRow>
+      </S.LoginContainer>
     </S.Container>
   );
 }
