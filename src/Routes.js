@@ -10,7 +10,7 @@ import SearchPage from "./pages/fix/search.jsx";
 import EstimatePage from "./pages/estimate/estimate.jsx";
 import MatchPage from "./pages/matching/matching.jsx";
 import SplashPage from "./pages/splash/splash.jsx";
-import Login from "./pages/login/main.jsx";
+import Login from "./pages/login/login.jsx";
 import CompletePage from "./pages/complete/complete.jsx";
 import RequestPage from "./pages/request/request.jsx";
 import HistoryPage from "./pages/detail/history.jsx";

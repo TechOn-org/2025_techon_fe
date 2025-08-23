@@ -15,6 +15,10 @@ export const Container = styled.div`
     background: linear-gradient(180deg, #FFF 62.5%, #88BDFF 100%);
 `;
 
+export const LoginContainer = styled.div`
+  padding: 0px 20px;
+`;
+
 export const LogoContainer = styled.div`
   display: flex;
   flex-direction: column;
