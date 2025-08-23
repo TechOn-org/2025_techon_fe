@@ -227,3 +227,86 @@ export const MenuItem = styled.div`
     font-size: 16px;
   }
 `;
+
+//market
+export const Banner = styled.div`
+  margin: 16px;
+  padding: 16px;
+  background: #ffffffff;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const BannerText = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  strong {
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  span {
+    color: #666;
+    font-size: 12px;
+  }
+`;
+
+export const Tabs = styled.div`
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #eee;
+  padding: 12px 0;
+`;
+
+export const Tab = styled.div`
+  font-size: 16px;
+  font-weight: ${(props) => (props.active ? "600" : "600")};
+  color: ${(props) => (props.active ? "#2665fe" : "#999")};
+`;
+
+export const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2열 */
+  gap: 16px;
+  margin-top: 20px;
+`;
+
+export const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .img-wrap {
+    width: 173px;
+    height: 173px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #ffffffff;
+  }
+
+  .img-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .text-wrap {
+    margin-top: 8px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .name {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  .price {
+    font-size: 13px;
+    font-weight: bold;
+    color: #222;
+    margin-top: 4px;
+  }
+`;
