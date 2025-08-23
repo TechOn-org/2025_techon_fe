@@ -17,7 +17,7 @@ export default function Splash() {
   return (
     <div className="container">
       <section className={`layer ${phase === "text" ? "textshow" : phase === "fading" ? "fadeout" : "hide"}`}>
-        <h1 className="slogan">AI로 고치고, 지구를 살리다.</h1>
+        <h1 className="slogan">기술로 고치고, 지구를 살리다.</h1>
       </section>
       <section className={`layer ${phase === "logo" ? "show" : "hide"}`}>
         <div className="logo-container">
