@@ -19,8 +19,7 @@ export default function Splash() {
         </section>
         <section className={`layer ${phase === "logo" ? "show" : "hide"}`}>
           <div className="logo-container">
-            <img className="logo" src="/image/LOGO.png" alt="Tech On 로고" />
-            <img className="logo" src="/image/Tech On.png" alt="Tech On 워드마크" />
+            <img className="logo" src="/images/logo_icon.svg" alt="Tech On 로고" />
           </div>
         </section>
       </div>
