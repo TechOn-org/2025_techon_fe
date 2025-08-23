@@ -470,7 +470,7 @@ export const PillButton = styled.button`
   border: none;
   background: #ffffff;
   color: ${color.text};
-  font-size: 14px;
+  font-size: 12px;
   border-radius: 16px;
   padding: 14px 16px;
   box-shadow:

@@ -18,7 +18,7 @@ const Complete = () => {
     {
       id: 1,
       status: "접수중",
-      date: "8월 22일 (금)",
+      date: "8월 23일 (토)",
       category: "휴대폰/태블릿",
       message: "업체에서 고객님의 견적서를 확인중입니다!",
       step: 1,
