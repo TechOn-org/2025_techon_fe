@@ -85,7 +85,6 @@ function MatchAPI() {
     fetchCompanies();
   }, [si, gu, dong, estimation]);
 
-  if (loading) return <p>업체 불러오는 중...</p>;
 
   return (
     <S.Container>
