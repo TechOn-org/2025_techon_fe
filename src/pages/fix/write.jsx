@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import TextInput from "../../components/common/inputs/TextInput";
+import SingleLineInput from "../../components/common/inputs/SingleLineInput";
 import Button from "../../components/common/buttons/PostButton";
 import * as S from "./styled";
 import axios from "axios";
@@ -30,8 +31,14 @@ function WritePage() {
 
       console.log("서버 응답:", response.data);
 
-      // 성공 시 다음 페이지 이동 (진단 결과도 함께 넘길 수 있음)
-      navigate("/location", { state: { estimation: response.data } });
+      // ✅ Estimate 페이지로 응답 데이터 전달
+      navigate("/estimate", { 
+        state: { 
+          estimation: response.data, 
+          modelName // 내가 입력한 값 같이 전달
+        } 
+      });
+
     } catch (error) {
       console.error("에러 발생:", error.response || error.message);
       alert(error.response?.data?.message || "서버 통신 중 문제가 발생했습니다.");
@@ -54,8 +61,7 @@ function WritePage() {
 
       <S.Title>
         <S.Heading>제품 모델명을 입력해주세요</S.Heading>
-        <TextInput
-          height={16}
+        <SingleLineInput
           placeholder="모델명을 입력해주세요"
           value={modelName}
           onChange={(e) => setModelName(e.target.value)}

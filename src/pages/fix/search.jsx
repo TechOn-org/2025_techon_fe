@@ -66,7 +66,7 @@ function SearchPage() {
       {/* 메시지 */}
       <S.Question>
         잠시만 기다려주세요. <br />
-        AI가 제품을 진단 중입니다. <br />
+        Tech On이 제품을 진단 중입니다. <br />
         최적의 전문업체를 찾고 있어요!
       </S.Question>
 

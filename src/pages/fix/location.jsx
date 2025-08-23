@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import TextInput from "../../components/common/inputs/TextInput";
 import Button from "../../components/common/buttons/PostButton";
 import * as S from "./styled";
+import SingleLineInput from "../../components/common/inputs/SingleLineInput";
+
 
 function LocationPage() {
   const navigate = useNavigate();
@@ -44,9 +46,8 @@ function LocationPage() {
 
       <S.Title>
         <S.Heading>시, 구, 등을 입력해주세요.</S.Heading>
-        <TextInput
-          height={16}
-          placeholder="지역을 입력해주세요"
+        <SingleLineInput
+          placeholder="위치를 입력해주세요"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
         />
