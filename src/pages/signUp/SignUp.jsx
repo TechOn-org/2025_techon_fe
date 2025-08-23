@@ -12,13 +12,12 @@ function SignUp() {
 
   const navigate = useNavigate();
 
-  const isIdValid = /^[A-Za-z0-9]{8,}$/.test(memberId);
+  const isIdValid = /^[A-Za-z0-9]{6,}$/.test(memberId);
   const isNicknameValid = nickname.length <= 10 && nickname.length > 0;
   const isPasswordValid =
-    /[A-Z]/.test(password) &&
     /[a-z]/.test(password) &&
     /\d/.test(password) &&
-    password.length >= 10;
+    password.length >= 6;
   const isPasswordMismatch = passwordConfirm && password !== passwordConfirm;
 
   const handleSignUp = async () => {
@@ -67,7 +66,7 @@ function SignUp() {
             />
             {!isIdValid && memberId && (
               <S.ErrorMessage>
-                아이디는 영문과 숫자를 조합한 8자 이상이어야 합니다.
+                아이디는 영문과 숫자를 조합한 6자 이상이어야 합니다.
               </S.ErrorMessage>
             )}
           </S.FormGroup>
@@ -100,7 +99,7 @@ function SignUp() {
             />
             {!isPasswordValid && password && (
               <S.ErrorMessage>
-                비밀번호는 영문 대소문자, 숫자를 포함하여 10자 이상이어야 합니다.
+                비밀번호는 영문 소문자, 숫자를 포함하여 6자 이상이어야 합니다.
               </S.ErrorMessage>
             )}
           </S.FormGroup>
