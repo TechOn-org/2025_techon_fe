@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import * as S from "./styled";
 import "./request.css";
 
@@ -9,32 +9,54 @@ const companyHeader = "/images/company-header.svg";
 const upIcon = "/images/up.svg";
 const downIcon = "/images/down.svg";
 
+// ✅ 업체 이미지와 이름 매핑
+const BUILDINGS = [
+  { img: "/images/building_1.svg", bg: "/images/background_1.svg", name: "사운드리서치" },
+  { img: "/images/building_2.svg", bg: "/images/background_2.svg", name: "아이폰에이에스센터장승배기점" },
+  { img: "/images/building_3.svg", bg: "/images/background_3.svg", name: "현재정보통신" },
+  { img: "/images/building_4.svg", bg: "/images/background_4.svg", name: "경성테크" },
+  { img: "/images/building_5.svg", bg: "/images/background_5.svg", name: "동작홈마스터" },
+];
+
 const Request = () => {
     const navigate = useNavigate();
+    const { state } = useLocation();
     const [isOpen, setIsOpen] = useState(true);
+
+    // 넘어온 업체 정보 매칭 (name으로 찾음)
+    const company = BUILDINGS.find((b) => b.name === state?.name);
+
+    if (!company) {
+      return (
+        <S.Container>
+          <p>업체 정보가 없습니다.</p>
+          <S.BackButton onClick={() => navigate("/match")}>←</S.BackButton>
+        </S.Container>
+      );
+    }
 
   return (
     <S.Container>
-      {/* 상단 업체 이미지 */}
+      {/* 상단 업체 이미지 (배경) */}
       <S.HeaderWrapper>
-        <S.HeaderImage src={companyHeader} alt="업체 대표 이미지" />
+        <S.HeaderImage src={company.bg} alt="업체 대표 배경" />
         <S.BackButton onClick={() => navigate("/match")}>←</S.BackButton>
       </S.HeaderWrapper>
 
       {/* 업체 프로필 */}
       <S.Header>
-        <S.ProfileImage src={sampleImg} alt="프로필" />
+        <S.ProfileImage src={company.img} alt={company.name} />
       </S.Header>
 
       <S.Body>
-        <S.Badge>추천순위 1위</S.Badge>
+        <S.Badge>추천순위 {state.rank}위</S.Badge>
         <S.Title>
-          안녕하세요 <br/> <span>경성테크</span>입니다.
+          안녕하세요 <br /> <span>{company.name}</span>입니다.
         </S.Title>
 
         {/* 별점 + 주소 */}
         <S.SubInfo>
-            ★ <span className="score">(4.8) 서울시 구리구 구리동</span>
+          ★ <span className="score">({state.rating}) 서울시 동작구 상도동</span>
         </S.SubInfo>
 
         {/* 소개 문구 */}
