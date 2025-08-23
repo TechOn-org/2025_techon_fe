@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom"; // ✅ useLocation import 추가
 import * as S from "./styled";
 import "./matching.css";
 
 
 const match = "/images/match.svg";
 const info = "/images/info.svg";
+// const estimation = state?.estimation;
+// const modelName = state?.modelName;
 
 // ✅ 업체 이미지와 이름 매핑
 const BUILDINGS = [
@@ -43,9 +45,14 @@ const getRandom = (min, max) =>
 
 function Match() {
   const navigate = useNavigate();
+  const { state } = useLocation();   // ✅ 컴포넌트 안에서 호출
+  const estimation = state?.estimation;
+  const modelName = state?.modelName;
+
   const [companies, setCompanies] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  
   useEffect(() => {
     // API 안 쓰고 더미 데이터 생성
     const fetchDummyCompanies = () => {
@@ -215,8 +222,17 @@ function Match() {
           <S.CompanyCard
             key={idx}
             className="matching_card"
-            onClick={() => navigate("/request", { state: c })} 
-          >
+            onClick={() =>
+            navigate("/request", {
+              state: {
+                ...c,          // 업체 정보 (name, img, rating 등)
+                rank: idx + 1, // 추천순위
+                estimation,    // ✅ Estimate에서 넘어온 데이터 그대로 전달
+                modelName,     // 모델명도 같이
+              },
+            })
+          }
+        >
             <S.RankBadge>추천순위 {idx + 1}위</S.RankBadge>
             <S.CompanyImage src={c.img} alt={c.name} />
             <S.CompanyName>{c.name}</S.CompanyName>
